@@ -18,6 +18,15 @@ class Salary extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	public function __construct() {
+
+		parent::__construct();
+		$this->load->library(array('session'));
+		$this->load->helper(array('url'));
+		$this->load->model('salary_model');
+
+	}
+
 	public function index()
 	{
 		$this->load->library('session');
@@ -36,17 +45,71 @@ class Salary extends CI_Controller {
 
 	public function add()
 	{
-		$this->load->library('session');
-		if ($this->session->has_userdata('username')) {
-			$this->load->helper('url');
-			$this->load->view('master/header');
-			$this->load->view('master/navigation');
-			$this->load->view('pages/salary/addSalary');
-			$this->load->view('master/jsAdd');
-			$this->load->view('master/footer');
+		 // create the data object
+		$data = new stdClass();
+
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+    	// set validation rules
+		$this->form_validation->set_rules('nik', 'NIK', 'required');
+		$this->form_validation->set_rules('tgl', 'Tanggal Lahir', 'required');
+		$this->form_validation->set_rules('gajipokok', 'Gaji Pokok', 'required');
+
+		if ($this->form_validation->run() === false) {
+			$this->load->library('session');
+			if ($this->session->has_userdata('username')) {
+				$this->load->helper('url');
+				$this->load->view('master/header');
+				$this->load->view('master/navigation');
+				$this->load->view('pages/salary/addSalary');
+				$this->load->view('master/jsAdd');
+				$this->load->view('master/footer');
+			} else {
+				$this->load->helper('url');
+				header('location:'.base_url().'user/login');
+			}
 		} else {
-			$this->load->helper('url');
-			header('location:'.base_url().'user/login');
+			$nik = $this->input->post('nik');
+			$gajipokok = $this->input->post('gajipokok');
+			$bonus = $this->input->post('bonus');
+			$tgl = $this->input->post('tgl');
+
+			if ($this->salary_model->create_salary($nik, $gajipokok, $bonus, $tgl)) {
+
+				$success = "creation success";
+				$data = array('success' => $success );
+
+				$this->load->library('session');
+				if ($this->session->has_userdata('username')) {
+					$this->load->helper('url');
+					$this->load->view('master/header');
+					$this->load->view('master/navigation');
+					$this->load->view('pages/salary/addSalary', $data);
+					$this->load->view('master/jsAdd');
+					$this->load->view('master/footer');
+				} else {
+					$this->load->helper('url');
+					header('location:'.base_url().'user/login');
+				}
+
+		} else {
+			// user creation failed, this should never happen
+			$data->error = 'There was a problem creating new staff. Please try again.';
+
+			$this->load->library('session');
+			if ($this->session->has_userdata('username')) {
+				$this->load->helper('url');
+				$this->load->view('master/header');
+				$this->load->view('master/navigation');
+				$this->load->view('pages/salary/addSalary');
+				$this->load->view('master/jsAdd');
+				$this->load->view('master/footer');
+			} else {
+				$this->load->helper('url');
+				header('location:'.base_url().'user/login');
+			}
 		}
 	}
+}
 }

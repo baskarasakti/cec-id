@@ -23,28 +23,33 @@
           <div class="col-md-6">
             <!-- general form elements -->
             <div class="box box-primary box-solid">
-              <div class="box-header with-border">
-                <h3 class="box-title">Add New Outlet</h3>
-              </div>
-              <!-- /.box-header -->
+              <?php if (validation_errors()) : ?>
+                <p><font color="red"><center><?= validation_errors() ?></center></font></p>
+              <?php endif; ?>
+              <?php if (isset($error)) : ?>
+                <p><font color="red"><center><?= $error ?></center></font></p>
+              <?php endif; ?>
+              <?php if (isset($success)) : ?>
+                <p><font color="green"><center><?= $success ?></center></font></p>
+              <?php endif; ?>
               <!-- form start -->
-              <form role="form">
+              <?= form_open() ?>
                 <div class="box-body">
                   <div class="form-group">
                   <label>ID Outlet</label>
-                    <input type="text" class="form-control" placeholder="O11" disabled="">
+                    <input type="text" class="form-control" placeholder="O11"  name="idoutlet">
                   </div>
                   <div class="form-group">
                   <label>Nama Outlet</label>
-                  <input type="text" class="form-control" placeholder="Nama Belakang">
+                  <input type="text" class="form-control" placeholder="Nama Outlet" name="nama">
                   </div>
                   <div class="form-group">
                     <label>Lokasi</label>
-                    <input type="text" class="form-control" placeholder="ex: Jl. Abc no 21">
+                    <input type="text" class="form-control" placeholder="ex: Jl. Abc no 21" name="lokasi">
                   </div>
                   <div class="form-group">
                     <label>Nomor Telpon</label>
-                    <input type="text" class="form-control" placeholder="ex: 085...">
+                    <input type="text" class="form-control" placeholder="ex: 085..." name="notelp">
                   </div>
                 </div>
                 <!-- /.box-body -->

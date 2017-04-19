@@ -22,12 +22,17 @@
           <div class="col-md-6">
             <!-- general form elements -->
             <div class="box box-primary box-solid">
-              <div class="box-header with-border">
-                <h3 class="box-title">Add Salary</h3>
-              </div>
-              <!-- /.box-header -->
+            <?php if (validation_errors()) : ?>
+                <p><font color="red"><center><?= validation_errors() ?></center></font></p>
+              <?php endif; ?>
+              <?php if (isset($error)) : ?>
+                <p><font color="red"><center><?= $error ?></center></font></p>
+              <?php endif; ?>
+              <?php if (isset($success)) : ?>
+                <p><font color="green"><center><?= $success ?></center></font></p>
+              <?php endif; ?>
               <!-- form start -->
-              <form role="form">
+              <?= form_open() ?>
                 <div class="box-body">
                 <div class="">
                   <h4 class="pull-left"><b>IDENTITAS PEGAWAI</b></h4>
@@ -39,7 +44,7 @@
                 <hr>
                 <div class="form-group">
                   <label>NIK</label>
-                  <input type="text" class="form-control" placeholder="098877555" >
+                  <input type="text" class="form-control" placeholder="098877555" name="nik">
                 </div>
                 <div class="form-group">
                   <label>Nama Pegawai</label>
@@ -71,21 +76,17 @@
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                    <input type="text" class="form-control" data-inputmask="'alias': 'yyyy-mm-dd'" data-mask name="tgl">
                   </div>
                   <!-- /.input group -->
                 </div>
                 <div class="form-group">
                   <label>Gaji Pokok</label>
-                  <input type="text" class="form-control" placeholder="5.000.000">
-                </div>
-                <div class="form-group">
-                  <label>Gaji Lembur</label>
-                  <input type="text" class="form-control" placeholder="500.000">
+                  <input type="text" class="form-control" placeholder="5.000.000" name="gajipokok">
                 </div>
                 <div class="form-group">
                   <label>Bonus</label>
-                  <input type="text" class="form-control" placeholder="200.000">
+                  <input type="text" class="form-control" placeholder="200.000" name="bonus">
                 </div>
                 <hr>
                 <div class="form-group">

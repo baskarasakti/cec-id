@@ -18,6 +18,15 @@ class Outlet extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+		public function __construct() {
+
+		parent::__construct();
+		$this->load->library(array('session'));
+		$this->load->helper(array('url'));
+		$this->load->model('outlet_model');
+
+	}
+
 	public function index()
 	{
 		$this->load->library('session');
@@ -36,6 +45,18 @@ class Outlet extends CI_Controller {
 
 	public function add()
 	{
+		// create the data object
+		$data = new stdClass();
+
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+		// set validation rules
+		$this->form_validation->set_rules('nama', 'Nama Outlet', 'required');
+		$this->form_validation->set_rules('lokasi', 'Lokasi Outlet', 'required');
+		$this->form_validation->set_rules('notelp', 'No. Telp', 'required');
+
+		if ($this->form_validation->run() === false) {
 		$this->load->library('session');
 		if ($this->session->has_userdata('username')) {
 			$this->load->helper('url');
@@ -48,5 +69,48 @@ class Outlet extends CI_Controller {
 			$this->load->helper('url');
 			header('location:'.base_url().'user/login');
 		}
+	} else {
+
+		$idoutlet = $this->input->post('idoutlet');
+		$nama = $this->input->post('nama');
+		$lokasi = $this->input->post('lokasi');
+		$notelp = $this->input->post('notelp');
+
+		if ($this->outlet_model->create_outlet($idoutlet, $nama, $lokasi, $notelp)) {
+
+			$success = "creation success";
+			$data = array('success' => $success );
+
+			$this->load->library('session');
+			if ($this->session->has_userdata('username')) {
+				$this->load->helper('url');
+				$this->load->view('master/header');
+				$this->load->view('master/navigation');
+				$this->load->view('pages/outlet/addOutlet', $data);
+				$this->load->view('master/jsAdd');
+				$this->load->view('master/footer');
+			} else {
+				$this->load->helper('url');
+				header('location:'.base_url().'user/login');
+			}
+		} else {
+			// user creation failed, this should never happen
+			$data->error = 'There was a problem creating new staff. Please try again.';
+
+			$this->load->library('session');
+			if ($this->session->has_userdata('username')) {
+				$this->load->helper('url');
+				$this->load->view('master/header');
+				$this->load->view('master/navigation');
+				$this->load->view('pages/outlet/addOutlet');
+				$this->load->view('master/jsAdd');
+				$this->load->view('master/footer');
+			} else {
+				$this->load->helper('url');
+				header('location:'.base_url().'user/login');
+			}
+		}
+	}
+
 	}
 }
