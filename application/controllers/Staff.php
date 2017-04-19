@@ -29,12 +29,18 @@ class Staff extends CI_Controller {
 
 	public function index()
 	{
+		    // create the data object
+		$data = new stdClass();
+
+		$staff = $this->staff_model->get_staff_all();
+		$data = array('staff' => $staff );    
+
 		$this->load->library('session');
 		if ($this->session->has_userdata('username')) {
 			$this->load->helper('url');
 			$this->load->view('master/header');
 			$this->load->view('master/navigation');
-			$this->load->view('pages/staff/viewStaff');
+			$this->load->view('pages/staff/viewStaff', $data);
 			$this->load->view('master/jsViewTables');
 			$this->load->view('master/footer');
 		} else {

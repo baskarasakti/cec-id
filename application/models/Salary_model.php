@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * 
  * @extends CI_Model
  */
-class Staff_model extends CI_Model {
+class Salary_model extends CI_Model {
 	/**
 	 * __construct function.
 	 * 
@@ -26,17 +26,11 @@ class Staff_model extends CI_Model {
 	 * @param mixed $id
 	 * @return object the user object
 	 */
-	public function get_staff($id) {
+	public function get_salary($id) {
 		
-		$this->db->from('staff');
+		$this->db->from('salary');
 		$this->db->where('id', $id);
 		return $this->db->get()->row();
-		
-	}
-
-	public function get_staff_all() {
-		
-		return $this->db->get('staff');
 		
 	}
 
@@ -62,23 +56,17 @@ class Staff_model extends CI_Model {
 	 * @param mixed $password
 	 * @return bool true on success, false on failure
 	 */
-	public function create_staff($nik, $namadepan, $namabelakang, $tgllahir, $gender, $alamat, $notelp, $jabatan, $idoutlet) {
+	public function create_salary($nik, $gajipokok, $bonus, $tgl) {
 		
 		$data = array(
-			'nik_staff' 			=> $nik,
-			'nama_depan_staff'		=> $namadepan,
-			'nama_belakang_staff'	=> $namabelakang,
-			'tanggal_lahir_staff'	=> $tgllahir,
-			'jenis_kelamin_staff'	=> $gender,
-			'alamat_staff'			=> $alamat,
-			'no_telp_staff'			=> $notelp,
-			'jabatan_staff'			=> $jabatan,
-			'id_outlet' 			=> $idoutlet,
+			'nik_staff_salary' 		=> $nik,
+			'gaji_pokok_salary'		=> $gajipokok,
+			'bonus_salary'			=> $bonus,
+			'tanggal_salary'		=> $tgl,
 			'created_at' => date('Y-m-j H:i:s'),
 		);	
 
-		return $this->db->insert('staff', $data);
-		
+		return $this->db->insert('salary', $data);
 	}
 	
 }
