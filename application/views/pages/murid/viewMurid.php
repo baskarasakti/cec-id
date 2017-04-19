@@ -35,7 +35,6 @@
                         <th>Nama</th>
                         <th>Alamat</th>
                         <th>Telepon</th>
-                        <th>E-mail</th>
                         <th>Category</th>
                         <th>Level</th>
                         <th>Price</th>
@@ -43,118 +42,27 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>11111</td>
-                        <td>Lukman</td>
-                        <td>Address 01</td>
-                        <td>031-7436875</td>
-                        <td>lukman@cec.com</td>
-                        <td>Adult</td>
-                        <td>Convers.</td>
-                        <td>400000</td>
-                        <td>
-                          <a href="<?php echo base_url().'murid/edit';?>"><i class="fa fa-pencil"></i></a>
-                          <a href="#"><i class="fa fa-remove"></i></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>11112</td>
-                        <td>Ridwan</td>
-                        <td>Address 02</td>
-                        <td>031-7645854</td>
-                        <td>ridwan@cec.com</td>
-                        <td>Adult</td>
-                        <td>Convers.</td>
-                        <td>400000</td>
-                        <td>
-                          <a href="<?php echo base_url().'murid/edit';?>"><i class="fa fa-pencil"></i></a>
-                          <a href="#"><i class="fa fa-remove"></i></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>11113</td>
-                        <td>Evelyn</td>
-                        <td>Address 03</td>
-                        <td>085746879555</td>
-                        <td>evelyn@gmail.com</td>
-                        <td>Mid Level</td>
-                        <td>Intermediate 2</td>
-                        <td>400000</td>
-                        <td>
-                          <a href="<?php echo base_url().'murid/edit';?>"><i class="fa fa-pencil"></i></a>
-                          <a href="#"><i class="fa fa-remove"></i></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>11114</td>
-                        <td>Charoline</td>
-                        <td>Address 04</td>
-                        <td>081254895622</td>
-                        <td>charoline@yahoo.com</td>
-                        <td>Higher Level</td>
-                        <td>Advance 1</td>
-                        <td>400000</td>
-                        <td>
-                          <a href="<?php echo base_url().'murid/edit';?>"><i class="fa fa-pencil"></i></a>
-                          <a href="#"><i class="fa fa-remove"></i></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>11115</td>
-                        <td>Handoko</td>
-                        <td>Address 05</td>
-                        <td>081298748522</td>
-                        <td>handooko@gmail.com</td>
-                        <td>Higher Level</td>
-                        <td>English 101</td>
-                        <td>400000</td>
-                        <td>
-                          <a href="<?php echo base_url().'murid/edit';?>"><i class="fa fa-pencil"></i></a>
-                          <a href="#"><i class="fa fa-remove"></i></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>11116</td>
-                        <td>Albert</td>
-                        <td>Address 06</td>
-                        <td>085748995798</td>
-                        <td>albert@cec.com</td>
-                        <td>TOEFL</td>
-                        <td>Local</td>
-                        <td>400000</td>
-                        <td>
-                          <a href="<?php echo base_url().'murid/edit';?>"><i class="fa fa-pencil"></i></a>
-                          <a href="#"><i class="fa fa-remove"></i></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>11117</td>
-                        <td>Simon</td>
-                        <td>Address 07</td>
-                        <td>031-7687542</td>
-                        <td>simon@cec.com</td>
-                        <td>MDC</td>
-                        <td>SHS</td>
-                        <td>400000</td>
-                        <td>
-                          <a href="<?php echo base_url().'murid/edit';?>"><i class="fa fa-pencil"></i></a>
-                          <a href="#"><i class="fa fa-remove"></i></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>11118</td>
-                        <td>Leonardo</td>
-                        <td>Address 08</td>
-                        <td>089978451211</td>
-                        <td>leonardoo@cec.com</td>
-                        <td>Higher Level</td>
-                        <td>English 101</td>
-                        <td>400000</td>
-                        <td>
-                          <a href="<?php echo base_url().'murid/edit';?>"><i class="fa fa-pencil"></i></a>
-                          <a href="#"><i class="fa fa-remove"></i></a>
-                        </td>
-                      </tr>
+                      <?php 
+                        if (isset($murid)) {
+                          foreach ($murid->result() as $murids) {
+                            ?>
+                            <tr>
+                              <td><?= $murids->nik; ?></td>
+                              <td><?= $murids->nama; ?></td>
+                              <td><?= $murids->alamat; ?></td>
+                              <td><?= $murids->notelp; ?></td>
+                              <td><?= $murids->kategori; ?></td>
+                              <td><?= $murids->level; ?></td>
+                              <td><?= $murids->price; ?></td>
+                              <td>
+                                <a href="<?php echo base_url().'murid/edit';?>"><i class="fa fa-pencil"></i></a>
+                                <a href="#"><i class="fa fa-remove"></i></a>
+                              </td>
+                            </tr>
+                            <?php
+                          }
+                        }
+                      ?>
                     </tbody>
                   </table>
                 </div><!-- /.box-body -->
