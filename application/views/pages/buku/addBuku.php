@@ -20,31 +20,37 @@
             <div class="col-md-6">
               <!-- general form elements -->
               <div class="box box-primary">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Tambah Buku</h3>
-                </div><!-- /.box-header -->
+                <?php if (validation_errors()) : ?>
+                  <p><font color="red"><center><?= validation_errors() ?></center></font></p>
+                <?php endif; ?>
+                <?php if (isset($error)) : ?>
+                  <p><font color="red"><center><?= $error ?></center></font></p>
+                <?php endif; ?>
+                <?php if (isset($success)) : ?>
+                  <p><font color="green"><center><?= $success ?></center></font></p>
+                <?php endif; ?>
                 <!-- form start -->
-                <form role="form">
+                <?= form_open() ?>
                   <div class="box-body">
                     <div class="form-group">
                       <label for="buku1">Judul Buku</label>
-                      <input type="text" class="form-control" id="buku1" placeholder="Masukkan Judul Buku">
+                      <input type="text" class="form-control" id="buku1" placeholder="Masukkan Judul Buku" name="judul">
                     </div>
                     <div class="form-group">
                       <label for="tahun">Tahun</label>
-                      <input type="text" class="form-control" id="buku1" placeholder="Masukkan Tahun">
+                      <input type="text" class="form-control" id="buku1" placeholder="Masukkan Tahun" name="tahun">
                     </div>
                     <div class="form-group">
                       <label for="pengarang">Pengarang</label>
-                      <input type="text" class="form-control" id="buku1" placeholder="Masukkan Pengarang">
+                      <input type="text" class="form-control" id="buku1" placeholder="Masukkan Pengarang" name="pengarang">
                     </div>
                     <div class="form-group">
                       <label for="penerbit">Penerbit</label>
-                      <input type="text" class="form-control" id="buku1" placeholder="Masukkan Penerbit">
+                      <input type="text" class="form-control" id="buku1" placeholder="Masukkan Penerbit" name="penerbit">
                     </div>
                     <div class="form-group">
                       <label for="harga">Harga Buku</label>
-                      <input type="text" class="form-control" id="buku1" placeholder="Masukkan Harga Buku">
+                      <input type="text" class="form-control" id="buku1" placeholder="Masukkan Harga Buku" name="harga">
                     </div>
                   </div><!-- /.box-body -->
 

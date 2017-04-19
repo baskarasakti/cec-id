@@ -34,6 +34,12 @@ class Murid_model extends CI_Model {
 		
 	}
 
+	public function get_murid_all() {
+		
+		return $this->db->get('murid');
+		
+	}
+
 	public function get_last_nik($outlet,$cat,$level) {
 		
 		$temp_nik = $outlet.$cat.$level;

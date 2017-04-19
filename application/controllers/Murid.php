@@ -20,12 +20,18 @@ class Murid extends CI_Controller {
 
   public function index()
   {
+    // create the data object
+    $data = new stdClass();
+
+    $murid = $this->murid_model->get_murid_all();
+    $data = array('murid' => $murid );    
+
     $this->load->library('session');
     if ($this->session->has_userdata('username')) {
       $this->load->helper('url');
       $this->load->view('master/header');
       $this->load->view('master/navigation');
-      $this->load->view('pages/murid/viewMurid');
+      $this->load->view('pages/murid/viewMurid', $data);
       $this->load->view('master/jsViewTables');
       $this->load->view('master/footer');
     } else {

@@ -40,61 +40,25 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>English 1</td>
-                        <td>2017</td>
-                        <td>Robert T</td>
-                        <td>Erlangga</td>
-                        <td>150000</td>
-                        <td>
-                          <button class="btn btn-xs"><a href="editBuku.html">edit</a></button>
-                          <button class="btn btn-danger btn-xs">delete</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>English 2</td>
-                        <td>2017</td>
-                        <td>Robert T</td>
-                        <td>Erlangga</td>
-                        <td>150000</td>
-                        <td>
-                          <button class="btn btn-xs"><a href="editBuku.html">edit</a></button>
-                          <button class="btn btn-danger btn-xs">delete</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>English 3</td>
-                        <td>2017</td>
-                        <td>Robert T</td>
-                        <td>Erlangga</td>
-                        <td>150000</td>
-                        <td>
-                          <button class="btn btn-xs"><a href="editBuku.html">edit</a></button>
-                          <button class="btn btn-danger btn-xs">delete</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>English 4</td>
-                        <td>2017</td>
-                        <td>Robert T</td>
-                        <td>Erlangga</td>
-                        <td>150000</td>
-                        <td>
-                          <button class="btn btn-xs"><a href="editBuku.html">edit</a></button>
-                          <button class="btn btn-danger btn-xs">delete</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>English 5</td>
-                        <td>2017</td>
-                        <td>Robert T</td>
-                        <td>Erlangga</td>
-                        <td>150000</td>
-                        <td>
-                          <button class="btn btn-xs"><a href="editBuku.html">edit</a></button>
-                          <button class="btn btn-danger btn-xs">delete</button>
-                        </td>
-                      </tr>
+                      <?php
+                        if (isset($buku)) {
+                          foreach ($buku->result() as $book) {
+                            ?>
+                              <tr>
+                                <td><?= $book->judul ?></td>
+                                <td><?= $book->tahun ?></td>
+                                <td><?= $book->pengarang ?></td>
+                                <td><?= $book->penerbit ?></td>
+                                <td><?= $book->harga ?></td>
+                                <td>
+                                  <button class="btn btn-xs"><a href="editBuku.html">edit</a></button>
+                                  <button class="btn btn-danger btn-xs">delete</button>
+                                </td>
+                              </tr>
+                            <?php
+                          }
+                        }
+                      ?>
                     </tbody>
                   </table>
                 </div><!-- /.box-body -->
