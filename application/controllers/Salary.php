@@ -29,12 +29,18 @@ class Salary extends CI_Controller {
 
 	public function index()
 	{
+		// create the data object
+		$data = new stdClass();
+
+		$salary = $this->salary_model->get_salary_all();
+		$data = array('salary' => $salary );
+
 		$this->load->library('session');
 		if ($this->session->has_userdata('username')) {
 			$this->load->helper('url');
 			$this->load->view('master/header');
 			$this->load->view('master/navigation');
-			$this->load->view('pages/salary/viewSalary');
+			$this->load->view('pages/salary/viewSalary', $data);
 			$this->load->view('master/jsViewTables');
 			$this->load->view('master/footer');
 		} else {

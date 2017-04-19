@@ -34,6 +34,12 @@ class Outlet_model extends CI_Model {
 		
 	}
 
+	public function get_outlet_all() {
+		
+		return $this->db->get('outlet');
+		
+	}
+
 	// public function get_last_nik($outlet,$cat,$level) {
 		
 	// 	$temp_nik = $outlet.$cat.$level;

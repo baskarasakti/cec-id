@@ -46,156 +46,29 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>S12758</td>
-                        <td>Haru</td>
-                        <td>Sasongko</td>
-                        <td>08/12/2016</td>
-                        <td>Laki-Laki</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>08567647943</td>
-                        <td>Guru Privat</td>
-                        <td>
-                        <a href="addSalary.html" class="btn btn-info btn-xs">Tambah Gaji</a>
-                          <a href="#" class="btn btn-default btn-xs">Edit</a>
-                          <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>S12758</td>
-                        <td>Haru</td>
-                        <td>Sasongko</td>
-                        <td>08/12/2016</td>
-                        <td>Laki-Laki</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>08567647943</td>
-                        <td>Guru Privat</td>
-                        <td>
-                        <a href="addSalary.html" class="btn btn-info btn-xs">Tambah Gaji</a>
-                          <a href="#" class="btn btn-default btn-xs">Edit</a>
-                          <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>S12758</td>
-                        <td>Haru</td>
-                        <td>Sasongko</td>
-                        <td>08/12/2016</td>
-                        <td>Laki-Laki</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>08567647943</td>
-                        <td>Guru Privat</td>
-                        <td>
-                        <a href="addSalary.html" class="btn btn-info btn-xs">Tambah Gaji</a>
-                          <a href="#" class="btn btn-default btn-xs">Edit</a>
-                          <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>S12758</td>
-                        <td>Haru</td>
-                        <td>Sasongko</td>
-                        <td>08/12/2016</td>
-                        <td>Laki-Laki</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>08567647943</td>
-                        <td>Guru Privat</td>
-                        <td>
-                        <a href="addSalary.html" class="btn btn-info btn-xs">Tambah Gaji</a>
-                          <a href="#" class="btn btn-default btn-xs">Edit</a>
-                          <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>S12758</td>
-                        <td>Haru</td>
-                        <td>Sasongko</td>
-                        <td>08/12/2016</td>
-                        <td>Laki-Laki</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>08567647943</td>
-                        <td>Guru Privat</td>
-                        <td>
-                        <a href="addSalary.html" class="btn btn-info btn-xs">Tambah Gaji</a>
-                          <a href="#" class="btn btn-default btn-xs">Edit</a>
-                          <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>S12758</td>
-                        <td>Haru</td>
-                        <td>Sasongko</td>
-                        <td>08/12/2016</td>
-                        <td>Laki-Laki</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>08567647943</td>
-                        <td>Guru Privat</td>
-                        <td>
-                        <a href="addSalary.html" class="btn btn-info btn-xs">Tambah Gaji</a>
-                          <a href="#" class="btn btn-default btn-xs">Edit</a>
-                          <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>S12758</td>
-                        <td>Haru</td>
-                        <td>Sasongko</td>
-                        <td>08/12/2016</td>
-                        <td>Laki-Laki</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>08567647943</td>
-                        <td>Guru Privat</td>
-                        <td>
-                        <a href="addSalary.html" class="btn btn-info btn-xs">Tambah Gaji</a>
-                          <a href="#" class="btn btn-default btn-xs">Edit</a>
-                          <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>S12758</td>
-                        <td>Haru</td>
-                        <td>Sasongko</td>
-                        <td>08/12/2016</td>
-                        <td>Laki-Laki</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>08567647943</td>
-                        <td>Guru Privat</td>
-                        <td>
-                        <a href="addSalary.html" class="btn btn-info btn-xs">Tambah Gaji</a>
-                          <a href="#" class="btn btn-default btn-xs">Edit</a>
-                          <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>S12758</td>
-                        <td>Haru</td>
-                        <td>Sasongko</td>
-                        <td>08/12/2016</td>
-                        <td>Laki-Laki</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>08567647943</td>
-                        <td>Guru Privat</td>
-                        <td>
-                        <a href="addSalary.html" class="btn btn-info btn-xs">Tambah Gaji</a>
-                          <a href="#" class="btn btn-default btn-xs">Edit</a>
-                          <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>S12758</td>
-                        <td>Haru</td>
-                        <td>Sasongko</td>
-                        <td>08/12/2016</td>
-                        <td>Laki-Laki</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>08567647943</td>
-                        <td>Guru Privat</td>
-                        <td>
-                        <a href="addSalary.html" class="btn btn-info btn-xs">Tambah Gaji</a>
-                          <a href="#" class="btn btn-default btn-xs">Edit</a>
-                          <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
+                      <?php 
+                      if (isset($staff)) {
+                        foreach ($staff->result() as $staffs) {
+                          ?> 
+                          <tr>
+                            <td><?= $staffs->nik_staff; ?></td>
+                            <td><?= $staffs->nama_depan_staff; ?></td>
+                            <td><?= $staffs->nama_belakang_staff; ?></td>
+                            <td><?= $staffs->tanggal_lahir_staff; ?></td>
+                            <td><?= $staffs->jenis_kelamin_staff; ?></td>
+                            <td><?= $staffs->alamat_staff; ?></td>
+                            <td><?= $staffs->no_telp_staff; ?></td>
+                            <td><?= $staffs->jabatan_staff; ?></td>
+                            <td>
+                              <a href="addSalary.html" class="btn btn-info btn-xs">Tambah Gaji</a>
+                              <a href="#" class="btn btn-default btn-xs">Edit</a>
+                              <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
+                            </td>
+                          </tr>
+                          <?php 
+                        }
+                      }
+                      ?>
                     </tbody>
                   </table>
                 </div><!-- /.box-body -->

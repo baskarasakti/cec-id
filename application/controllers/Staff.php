@@ -29,7 +29,7 @@ class Staff extends CI_Controller {
 
 	public function index()
 	{
-		    // create the data object
+		// create the data object
 		$data = new stdClass();
 
 		$staff = $this->staff_model->get_staff_all();

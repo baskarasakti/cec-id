@@ -3,13 +3,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Lihat User
+            Lihat Pegawau
             <small>Tabel</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">User</a></li>
-            <li class="active">Lihat User</li>
+            <li><a href="#">Tables</a></li>
+            <li class="active">Data tables</li>
           </ol>
         </section>
 
@@ -17,11 +17,12 @@
         <section class="content">
           <div class="row">
             <div class="col-xs-12">
+
               <div class="box">
                 <div class="box-header with-border">
                   <h3 class="box-title">Master Data User</h3>
-                  <div class="pull-right">
-                      <a href="<?php echo base_url().'event/userAdd';?>" class="btn btn-primary">Tambah Event</a>
+                    <div class="pull-right">
+                      <a href="<?php echo base_url().'staff/add';?>" class="btn btn-primary">Tambah User Baru</a>
                       <div class="btn-group">
                       <button type="button" class="btn btn-default">Excel</button>
                       <button type="button" class="btn btn-default">PDF</button>
@@ -30,30 +31,25 @@
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                <div class="row">
-                </div>
                   <table id="example1" class="table table-bordered table-striped">
                     <thead>
                       <tr>
-                        <th>ID Event</th>
-                        <th>Nama Event</th>
-                        <th>Tanggal</th>
-                        <th>Lokasi</th>
-                        <th>Authorized User</th>
-                        <th>Action</th>
+                        <th>username</th>
+                        <th>Nama Lengkap</th>
+                        <th>Outlet</th>
+                        <th>User level</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php 
-                      if (isset($event)) {
-                        foreach ($event->result() as $events) {
+                      if (isset($user)) {
+                        foreach ($user->result() as $users) {
                           ?> 
                           <tr>
-                            <td><?= $events->id_event; ?></td>
-                            <td><?= $events->nama_event; ?></td>
-                            <td><?= $events->tanggal_event; ?></td>
-                            <td><?= $events->lokasi_event; ?></td>
-                            <td><?= $events->user_event; ?></td>
+                            <td><?= $users->username; ?></td>
+                            <td><?= $users->name; ?></td>
+                            <td><?= $users->outlet; ?></td>
+                            <td><?= $users->flag; ?></td>
                             <td>
                               <a href="#" class="btn btn-default btn-xs">Edit</a>
                               <a href="#" class="btn btn-danger btn-xs  ">Delete</a>

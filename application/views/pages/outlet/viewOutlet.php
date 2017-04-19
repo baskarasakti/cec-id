@@ -32,96 +32,35 @@
                 <div class="box-body">
                 <div class="row">
                 </div>
-                  <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th>ID Outlet</th>
-                        <th>Nama Outlet</th>
-                        <th>Lokasi</th>
-                        <th>No. Telp</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>O11</td>
-                        <td>Outlet A</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>0897644778</td>
-                        <td>
-                        <a href="#" class="btn btn-default btn-xs">Edit</a>
-                        <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>O11</td>
-                        <td>Outlet A</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>0897644778</td>
-                        <td>
-                        <a href="#" class="btn btn-default btn-xs">Edit</a>
-                        <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>O11</td>
-                        <td>Outlet A</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>0897644778</td>
-                        <td>
-                        <a href="#" class="btn btn-default btn-xs">Edit</a>
-                        <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>O11</td>
-                        <td>Outlet A</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>0897644778</td>
-                        <td>
-                        <a href="#" class="btn btn-default btn-xs">Edit</a>
-                        <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                        <td>O11</td>
-                        <td>Outlet A</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>0897644778</td>
-                        <td>
-                        <a href="#" class="btn btn-default btn-xs">Edit</a>
-                        <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>O11</td>
-                        <td>Outlet A</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>0897644778</td>
-                        <td>
-                        <a href="#" class="btn btn-default btn-xs">Edit</a>
-                        <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>O11</td>
-                        <td>Outlet A</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>0897644778</td>
-                        <td>
-                        <a href="#" class="btn btn-default btn-xs">Edit</a>
-                        <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>O11</td>
-                        <td>Outlet A</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>0897644778</td>
-                        <td>
-                        <a href="#" class="btn btn-default btn-xs">Edit</a>
-                        <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>ID Outlet</th>
+                      <th>Nama Outlet</th>
+                      <th>Lokasi</th>
+                      <th>No. Telp</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php 
+                    if (isset($outlet)) {
+                      foreach ($outlet->result() as $outlets) {
+                        ?>
+                        <tr>
+                          <td><?= $outlets->id_outlet; ?></td>
+                          <td><?= $outlets->nama_outlet; ?></td>
+                          <td><?= $outlets->lokasi_outlet; ?></td>
+                          <td><?= $outlets->no_telp_outlet; ?></td>
+                          <td>
+                            <a href="#" class="btn btn-default btn-xs">Edit</a>
+                            <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
+                          </td>
+                        </tr>
+                      <?php 
+                    }
+                    }
+                    ?>
                     </tbody>
                   </table>
                 </div><!-- /.box-body -->

@@ -117,7 +117,7 @@
                   </a>
                   <ul class="treeview-menu">
                     <li class="active"><a href="<?php echo base_url().'user/register' ?>"><i class="fa fa-circle-o"></i> Add User</a></li>
-                    <li><a href="<?php echo base_url().'user/list' ?>"><i class="fa fa-circle-o"></i> View User</a></li>
+                    <li><a href="<?php echo base_url().'user/lists' ?>"><i class="fa fa-circle-o"></i> View User</a></li>
                   </ul>
                 </li>
                 <li class="treeview">

@@ -29,12 +29,18 @@ class Outlet extends CI_Controller {
 
 	public function index()
 	{
+		// create the data object
+		$data = new stdClass();
+
+		$outlet = $this->outlet_model->get_outlet_all();
+		$data = array('outlet' => $outlet );    
+
 		$this->load->library('session');
 		if ($this->session->has_userdata('username')) {
 			$this->load->helper('url');
 			$this->load->view('master/header');
 			$this->load->view('master/navigation');
-			$this->load->view('pages/outlet/viewOutlet');
+			$this->load->view('pages/outlet/viewOutlet', $data);
 			$this->load->view('master/jsViewTables');
 			$this->load->view('master/footer');
 		} else {

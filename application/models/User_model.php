@@ -18,6 +18,12 @@ class User_model extends CI_Model {
 		$this->load->database();
 		
 	}
+
+	public function get_user_all() {
+		
+		return $this->db->get('user');
+		
+	}
 	
 	/**
 	 * create_user function.

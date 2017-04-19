@@ -46,126 +46,29 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>2311</td>
-                        <td>Abas Kurniawan</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>0086896555</td>
-                        <td>Jemursari</td>
-                        <td>Guru Privat</td>
-                        <td>Rp. 3.500.000</td>
-                        <td>Februari 2016</td>
+                    <?php 
+                    if (isset($salary)) {
+                      foreach ($salary->result() as $salarys) {
+                        ?>
+                    <tr>
+                        <td><?= $salarys->nik_staff; ?></td>
+                        <td><?= $salarys->nama_depan_staff." ".$salarys->nama_belakang_staff; ?></td>
+                        <td><?= $salarys->alamat_staff; ?></td>
+                        <td><?= $salarys->no_telp_staff; ?></td>
+                        <td><?= $salarys->id_outlet; ?></td>
+                        <td><?= $salarys->jabatan_staff; ?></td>
+                        <td><?= $salarys->gaji_pokok_salary+$salarys->bonus_salary; ?></td>
+                        <td><?= $salarys->tanggal_salary; ?></td>
                         <td>
-                        <a href="#" class="btn btn-info btn-xs">Detail</a>
                         <a href="#" class="btn btn-default btn-xs">Edit</a>
-                        <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
+                        <a href="#" class="btn btn-danger btn-xs  ">Delete</a>               
                         </td>
                       </tr>
-                      <tr>
-                        <td>2311</td>
-                        <td>Abas Kurniawan</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>0086896555</td>
-                        <td>Jemursari</td>
-                        <td>Guru Privat</td>
-                        <td>Rp. 3.500.000</td>
-                        <td>Februari 2016</td>
-                        <td>
-                        <a href="#" class="btn btn-info btn-xs">Detail</a>
-                        <a href="#" class="btn btn-default btn-xs">Edit</a>
-                        <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2311</td>
-                        <td>Abas Kurniawan</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>0086896555</td>
-                        <td>Jemursari</td>
-                        <td>Guru Privat</td>
-                        <td>Rp. 3.500.000</td>
-                        <td>Februari 2016</td>
-                        <td>
-                        <a href="#" class="btn btn-info btn-xs">Detail</a>
-                        <a href="#" class="btn btn-default btn-xs">Edit</a>
-                        <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2311</td>
-                        <td>Abas Kurniawan</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>0086896555</td>
-                        <td>Jemursari</td>
-                        <td>Guru Privat</td>
-                        <td>Rp. 3.500.000</td>
-                        <td>Februari 2016</td>
-                        <td>
-                        <a href="#" class="btn btn-info btn-xs">Detail</a>
-                        <a href="#" class="btn btn-default btn-xs">Edit</a>
-                        <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2311</td>
-                        <td>Abas Kurniawan</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>0086896555</td>
-                        <td>Jemursari</td>
-                        <td>Guru Privat</td>
-                        <td>Rp. 3.500.000</td>
-                        <td>Februari 2016</td>
-                        <td>
-                        <a href="#" class="btn btn-info btn-xs">Detail</a>
-                        <a href="#" class="btn btn-default btn-xs">Edit</a>
-                        <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2311</td>
-                        <td>Abas Kurniawan</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>0086896555</td>
-                        <td>Jemursari</td>
-                        <td>Guru Privat</td>
-                        <td>Rp. 3.500.000</td>
-                        <td>Februari 2016</td>
-                        <td>
-                        <a href="#" class="btn btn-info btn-xs">Detail</a>
-                        <a href="#" class="btn btn-default btn-xs">Edit</a>
-                        <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2311</td>
-                        <td>Abas Kurniawan</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>0086896555</td>
-                        <td>Jemursari</td>
-                        <td>Guru Privat</td>
-                        <td>Rp. 3.500.000</td>
-                        <td>Februari 2016</td>
-                        <td>
-                        <a href="#" class="btn btn-info btn-xs">Detail</a>
-                        <a href="#" class="btn btn-default btn-xs">Edit</a>
-                        <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2311</td>
-                        <td>Abas Kurniawan</td>
-                        <td>Jl. Abcdefg </td>
-                        <td>0086896555</td>
-                        <td>Jemursari</td>
-                        <td>Guru Privat</td>
-                        <td>Rp. 3.500.000</td>
-                        <td>Februari 2016</td>
-                        <td>
-                        <a href="#" class="btn btn-info btn-xs">Detail</a>
-                        <a href="#" class="btn btn-default btn-xs">Edit</a>
-                        <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
-                        </td>
-                      </tr>
+                    <?php  
+                      }
+                    }
+                     ?>
+
                     </tbody>
                   </table>
                 </div><!-- /.box-body -->

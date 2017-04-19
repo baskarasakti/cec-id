@@ -23,20 +23,25 @@
           <div class="col-md-6">
             <!-- general form elements -->
             <div class="box box-primary box-solid">
-              <div class="box-header with-border">
-                <h3 class="box-title">Add New Event</h3>
-              </div>
-              <!-- /.box-header -->
+            <?php if (validation_errors()) : ?>
+                <p><font color="red"><center><?= validation_errors() ?></center></font></p>
+              <?php endif; ?>
+              <?php if (isset($error)) : ?>
+                <p><font color="red"><center><?= $error ?></center></font></p>
+              <?php endif; ?>
+              <?php if (isset($success)) : ?>
+                <p><font color="green"><center><?= $success ?></center></font></p>
+              <?php endif; ?>
               <!-- form start -->
-              <form role="form">
+              <?= form_open() ?>
                 <div class="box-body">
                   <div class="form-group">
                     <label>ID Event</label>
-                    <input type="text" class="form-control" placeholder="U11" disabled="">
+                    <input type="text" class="form-control" placeholder="U11" name="idevent">
                   </div>
                   <div class="form-group">
                     <label>Nama Event</label>
-                    <input type="text" class="form-control" placeholder="Nama User">
+                    <input type="text" class="form-control" placeholder="Nama User" name="nama">
                   </div>
                   <!-- Date -->
                   <div class="form-group">
@@ -45,33 +50,33 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                  <input type="text" class="form-control" data-inputmask="'alias': 'yyyy-mm-dd'" data-mask name="tgl">
                 </div>
                     <!-- /.input group -->
                   </div>
                   <div class="form-group">
                     <label>Lokasi</label>
-                    <input type="text" class="form-control" placeholder="Nama User">
+                    <input type="text" class="form-control" placeholder="Nama User" name="lokasi">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" name="email">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
                   </div>
                   <div class="form-group">
                   <label>Outlet</label>
                   <select class="form-control">
-                    <option>Outlet 1</option>
-                    <option>Outlet 2</option>
-                    <option>Outlet 3</option>
-                    <option>Outlet 4</option>
-                    <option>Outlet 5</option>
-                    <option>Outlet 6</option>
-                    <option>Outlet 7</option>
-                    <option>Outlet 8</option>
+                    <option value="1">Outlet 1</option>
+                    <option value="2">Outlet 2</option>
+                    <option value="3">Outlet 3</option>
+                    <option value="4">Outlet 4</option>
+                    <option value="5">Outlet 5</option>
+                    <option value="6">Outlet 6</option>
+                    <option value="7">Outlet 7</option>
+                    <option value="8">Outlet 8</option>
                   </select>
                 </div>
                 <!-- /.box-body -->
