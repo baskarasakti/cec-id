@@ -15,7 +15,7 @@
     <script>
       $(function() {
         //Datemask dd/mm/yyyy
-        $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+        $("#datemask").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
         //Money Euro
         $("[data-mask]").inputmask();
       })

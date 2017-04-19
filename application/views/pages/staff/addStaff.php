@@ -56,16 +56,16 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control" data-inputmask="'alias': 'yyyy/mm/dd/'" data-mask name="tgllahir">
+                  <input type="text" class="form-control" data-inputmask="'alias': 'yyyy-mm-dd'" data-mask name="tgllahir">
                 </div>
                     <!-- /.input group -->
                   </div>
                   <!-- /.form group -->
                   <div class="form-group">
                     <label>Gender</label>
-                    <select class="form-control">
-                    <option value="M">Laki-laki</option>
-                    <option value="F">Perempuan</option>
+                    <select class="form-control" name="gender">
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
                   </select>
                   </div>
                   <div class="form-group">
@@ -79,6 +79,17 @@
                   <div class="form-group">
                     <label>Jabatan</label>
                     <input type="text" class="form-control" placeholder="ex: Guru Private" name="jabatan">
+                  </div>
+                  <!-- /.form group -->
+                  <div class="form-group">
+                    <label>Outlet</label>
+                    <select class="form-control" name="idoutlet">
+                    <option value="1">Outlet 1</option>
+                    <option value="2">Outlet 2</option>
+                    <option value="3">Outlet 3</option>
+                    <option value="4">Outlet 4</option>
+                    <option value="5">Outlet 5</option>
+                  </select>
                   </div>
                 </div>
                 <!-- /.box-body -->
