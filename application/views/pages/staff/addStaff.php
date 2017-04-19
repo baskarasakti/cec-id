@@ -22,36 +22,41 @@
           <div class="col-md-6">
             <!-- general form elements -->
             <div class="box box-primary box-solid">
-              <div class="box-header with-border">
-                <h3 class="box-title">Add New Staff</h3>
-              </div>
-              <!-- /.box-header -->
+              <?php if (validation_errors()) : ?>
+                <p><font color="red"><center><?= validation_errors() ?></center></font></p>
+              <?php endif; ?>
+              <?php if (isset($error)) : ?>
+                <p><font color="red"><center><?= $error ?></center></font></p>
+              <?php endif; ?>
+              <?php if (isset($success)) : ?>
+                <p><font color="green"><center><?= $success ?></center></font></p>
+              <?php endif; ?>
               <!-- form start -->
-              <form role="form">
+              <?= form_open() ?>
                 <div class="box-body">
                   <div class="form-group">
                     <label>NIK</label>
-                    <input type="text" class="form-control" placeholder="ex: S108649 ">
+                    <input type="text" class="form-control" placeholder="ex: S108649" name="nik">
                   </div>
                   <div class="form-group">
                   <label>Nama Lengkap</label>
                       <div class="row">
                         <div class="col-xs-6">
-                          <input type="text" class="form-control" placeholder="Nama Depan">
+                          <input type="text" class="form-control" placeholder="Nama Depan" name="namadepan">
                         </div>
                         <div class="col-xs-6">
-                          <input type="text" class="form-control" placeholder="Nama Belakang">
+                          <input type="text" class="form-control" placeholder="Nama Belakang" name="namabelakang">
                         </div>
                       </div>
                   </div>
                   <!-- Date -->
                   <div class="form-group">
-                    <label>Tanggal Lahir:</label>
+                    <label>Tanggal Lahir</label>
                     <div class="input-group">
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                  <input type="text" class="form-control" data-inputmask="'alias': 'yyyy/mm/dd/'" data-mask name="tgllahir">
                 </div>
                     <!-- /.input group -->
                   </div>
@@ -59,26 +64,21 @@
                   <div class="form-group">
                     <label>Gender</label>
                     <select class="form-control">
-                    <option>Laki-laki</option>
-                    <option>Perempuan</option>
+                    <option value="M">Laki-laki</option>
+                    <option value="F">Perempuan</option>
                   </select>
                   </div>
                   <div class="form-group">
                     <label>Alamat</label>
-                    <input type="text" class="form-control" placeholder="ex: Jl. abcdegf ">
+                    <input type="text" class="form-control" placeholder="ex: Jl. abcdegf" name="alamat">
                   </div>
                   <div class="form-group">
                     <label>Nomor Telepon</label>
-                    <input type="text" class="form-control" placeholder="ex: 085...">
+                    <input type="text" class="form-control" placeholder="ex: 085..." name="notelp">
                   </div>
                   <div class="form-group">
                     <label>Jabatan</label>
-                    <input type="text" class="form-control" placeholder="ex: Guru Private">
-                  </div>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox"> Check me out
-                    </label>
+                    <input type="text" class="form-control" placeholder="ex: Guru Private" name="jabatan">
                   </div>
                 </div>
                 <!-- /.box-body -->

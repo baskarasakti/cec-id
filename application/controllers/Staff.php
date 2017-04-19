@@ -36,6 +36,22 @@ class Staff extends CI_Controller {
 
 	public function add()
 	{
+		 // create the data object
+		$data = new stdClass();
+
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+    	// set validation rules
+		$this->form_validation->set_rules('nama', 'Nama Lengkap', 'required');
+		$this->form_validation->set_rules('tgllahir', 'Tanggal Lahir', 'required');
+		$this->form_validation->set_rules('gender', 'Gender', 'required');
+		$this->form_validation->set_rules('alamat', 'Alamat', 'required|min_length[5]');
+		$this->form_validation->set_rules('notelp', 'Nomor Telepon', 'required|min_length[7]');
+		$this->form_validation->set_rules('kategori', 'Jabatan', 'required');
+
+		if ($this->form_validation->run() === false) {
+
 		$this->load->library('session');
 		if ($this->session->has_userdata('username')) {
 			$this->load->helper('url');
@@ -48,5 +64,18 @@ class Staff extends CI_Controller {
 			$this->load->helper('url');
 			header('location:'.base_url().'user/login');
 		}
+	} else {
+
+      $namadepan = $this->input->post('namadepan');
+      $namadepan = $this->input->post('namabelakang');
+      $tgllahir = $this->input->post('tgllahir');
+      $gender = $this->input->post('gender');
+      $alamat = $this->input->post('alamat');
+      $notelp = $this->input->post('notelp');
+      $kategori = $this->input->post('kategori');
+      $level = $this->input->post('level');
+      $pajak = $this->input->post('pajak');
+      $price = $this->input->post('price');
+
 	}
 }
