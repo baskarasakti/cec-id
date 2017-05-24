@@ -26,8 +26,12 @@ class Report extends CI_Controller {
 	    $data = new stdClass();
 	    $title = 'All Report';
 	    $outlet = $this->outlet_model->get_outlet_all();
-	    $report = $this->opcost_model->get_report_per_periode();
-		$data = array('title' => $title,'report'=>$report,'outlet'=>$outlet  );
+	    $tahun = $this->input->get('tahun');
+	    if ($tahun == "") {
+	    	$tahun = date('Y');
+	    }
+	    //$report = $this->opcost_model->get_report_per_periode();
+		$data = array('title' => $title,'outlet'=>$outlet,'tahun'=>$tahun );
 
 		$this->load->library('session');
 		if ($this->session->has_userdata('username')) {

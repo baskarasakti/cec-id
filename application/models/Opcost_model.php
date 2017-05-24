@@ -142,16 +142,5 @@ class Opcost_model extends CI_Model {
 		return $id;
 		
 	}
-
-	public function get_report_per_periode()
-	{
-		$this->db->select_sum('pembayaran_kursus.jumlah');
-		$this->db->select_sum('pembayaran_buku.jumlah');
-		$this->db->select('pembayaran_kursus.periode');
-		$this->db->from('pembayaran_kursus');
-		$this->db->join('pembayaran_buku', 'pembayaran_buku.periode = pembayaran_kursus.periode');
-		$this->db->group_by('pembayaran_buku.periode');
-		return $this->db->get();
-	}
 	
 }

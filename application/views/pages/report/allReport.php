@@ -17,7 +17,23 @@
         <section class="content">
           <div class="row">
             <div class="col-xs-12">
-
+              <form method="get" action="<?php echo base_url().'report/allReport';?>" accept-charset="utf-8">
+                <div class="row">
+                  <div class="col-xs-1" style="padding: 0px 0px 0 15px;">
+                    <label for="year">Select year:</label>
+                  </div>
+                  <div class="col-xs-1" style="padding: 0px 0px 0 15px;">
+                    <select class="form-control" style=" margin-bottom: 20px;" id="year" name="tahun">
+                      <?php for ($i=2000;$i<2100;$i++) { ?>
+                        <option value="<?= $i ?>"><?= $i; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                  <div class="col-xs-1" style="padding: 0px 0px 0 15px;">
+                    <button type="sumbit" class="btn btn-success">Submit</button>
+                  </div>
+                </div>
+              </form>
               <div class="box box-success">
                 <div class="box-body">
                   <table id="example1" class="table table-bordered table-striped">
@@ -28,16 +44,17 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($report->result() as $reports) {
-                            ?>
+                    <?php for ($i=1;$i<13;$i++) {
+                      $periode = sprintf('%02d',$i)."-".$tahun
+                      ?>
                       <tr>
-                        <td><?= $reports->periode ?></td>
+                        <td><?= $periode ?></td>
                         <td>
-                          <a href="<?php echo base_url().'invoice/report?periode='.$reports->periode;?>" class="btn btn-success btn-xs"><i class="fa fa-money"></i></a>
+                          <a href="<?php echo base_url().'invoice/report?periode='.$periode;?>" class="btn btn-success btn-xs"><i class="fa fa-money"></i></a>
                           <?php 
                           foreach ($outlet->result() as $outlets) {
                             ?>
-                            <a href="<?php echo base_url().'invoice/reportOutlet?periode='.$reports->periode.'&outlet='.$outlets->id;?>" class="btn btn-success btn-xs" value="<?= $outlets->id; ?>" name="outlet"><?= $outlets->nama_outlet; ?></a>
+                            <a href="<?php echo base_url().'invoice/reportOutlet?periode='.$periode.'&outlet='.$outlets->id;?>" class="btn btn-success btn-xs" value="<?= $outlets->id; ?>" name="outlet"><?= $outlets->nama_outlet; ?></a>
                             <?php
                           }
                           ?>
