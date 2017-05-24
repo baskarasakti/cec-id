@@ -40,7 +40,7 @@
                     <thead>
                       <tr>
                         <th>Periode</th>
-                        <th>Action</th>
+                        <th class="notPrintable">Action</th>
                       </tr>
                     </thead>
                     <tbody>
