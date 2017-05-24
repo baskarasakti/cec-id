@@ -64,4 +64,28 @@ class Buku_model extends CI_Model {
 		
 	}
 	
+	public function update_buku($id, $judul, $tahun, $pengarang, $penerbit, $harga) {
+		
+		$data = array(
+			'judul'   => $judul,
+			'tahun'      => $tahun,
+			'pengarang'      => $pengarang,
+			'penerbit'      => $penerbit,
+			'harga'   => $harga,
+			'created_at' => date('Y-m-j H:i:s'),
+		);
+		
+		$this->db->where('id', $id);
+		$this->db->update('buku', $data);
+		return $id;
+		
+	}
+
+	public function delete_buku($id) {
+		
+		$this->db->where('id', $id);
+		$this->db->delete('buku');
+		return $id;
+		
+	}
 }

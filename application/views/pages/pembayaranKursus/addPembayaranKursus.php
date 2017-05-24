@@ -20,28 +20,39 @@
             <div class="col-md-6">
               <!-- general form elements -->
               <div class="box box-primary">
+              <?php if (validation_errors()) : ?>
+                <p><font color="red"><center><?= validation_errors() ?></center></font></p>
+              <?php endif; ?>
+              <?php if (isset($error)) : ?>
+                <p><font color="red"><center><?= $error ?></center></font></p>
+              <?php endif; ?>
+              <?php if (isset($success)) : ?>
+                <p><font color="green"><center><?= $success ?></center></font></p>
+              <?php endif; ?>
                 <!-- form start -->
-                <form role="form">
+                <?= form_open(); ?>
                   <div class="box-body">
                     <div class="form-group">
                       <label for="nik">NIK</label>
-                      <input type="text" class="form-control" id="name" placeholder="Masukkan NIK">
-                    </div>
-                    <div class="form-group">
-                      <label for="tanggal1">Tanggal</label>
-                      <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask name="tanggal1">
+                      <input type="text" class="form-control" id="nik" placeholder="Masukkan NIK" name="nik">
                     </div>
                     <div class="form-group">
                       <label for="jumlah1">Jumlah</label>
-                      <input type="text" class="form-control" id="name" placeholder="Masukkan jumlah">
+                      <input type="text" class="form-control" id="name" placeholder="Masukkan jumlah" name="jumlah">
                     </div>
                     <div class="form-group">
                       <label for="diskon1">Diskon</label>
-                      <input type="text" class="form-control" id="name" placeholder="Masukkan Diskon">
+                      <input type="text" class="form-control" id="name" placeholder="Masukkan Diskon" name="diskon">
                     </div>
                     <div class="form-group">
                       <label for="diskon1">Periode Bulan</label>
-                      <input type="text" class="form-control" id="name" placeholder="Masukkan Periode Bulan">
+                      <select class="form-control" id="periode" name="periode">
+                        <?php for ($i=1; $i < 13; $i++) { 
+                          ?>
+                          <option value="<?= sprintf('%02d', $i)."-".date('Y'); ?>"><?= sprintf('%02d', $i)."-".date('Y'); ?></option>
+                          <?php
+                        } ?>
+                      </select>
                     </div>
                   </div><!-- /.box-body -->
 

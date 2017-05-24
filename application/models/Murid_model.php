@@ -26,17 +26,64 @@ class Murid_model extends CI_Model {
 	 * @param mixed $id
 	 * @return object the user object
 	 */
-	public function get_murid($id) {
+	public function get_murid($nik) {
 		
 		$this->db->from('murid');
-		$this->db->where('id', $id);
+		$this->db->where('nik', $nik);
+		$this->db->join('level', 'murid.level = level.id');
 		return $this->db->get()->row();
+		
+	}
+
+	public function get_murid_per_outlet($outlet) {
+		
+		$this->db->from('murid');
+		$this->db->where('id_outlet', $outlet);
+		$this->db->join('jadwal', 'murid.nik = jadwal.nik_jadwal', 'left');
+		$this->db->join('level', 'murid.level = level.id');
+		return $this->db->get();
+		
+	}
+
+	public function get_murid_per_outlet_per_level($outlet) {
+		
+		$this->db->select('count(*) as murid');
+		$this->db->select('levels');
+		$this->db->from('murid');
+		$this->db->where('id_outlet', $outlet);
+		$this->db->join('level', 'murid.level = level.id');
+		$this->db->group_by('level');
+		return $this->db->get();
+		
+	}
+
+	public function get_murid_count() {
+		
+		$this->db->from('murid');
+		$this->db->join('jadwal', 'murid.nik = jadwal.nik_jadwal', 'left');
+		$this->db->join('level', 'murid.level = level.id');
+		$count = $this->db->count_all_results();
+		return $count;
+		
+	}
+
+	public function get_murid_outlet_count($outlet) {
+		
+		$this->db->from('murid');
+		$this->db->where('id_outlet', $outlet);
+		$this->db->join('jadwal', 'murid.nik = jadwal.nik_jadwal', 'left');
+		$this->db->join('level', 'murid.level = level.id');
+		$count = $this->db->count_all_results();
+		return $count;
 		
 	}
 
 	public function get_murid_all() {
 		
-		return $this->db->get('murid');
+		$this->db->from('murid');
+		$this->db->join('jadwal', 'murid.nik = jadwal.nik_jadwal', 'left');
+		$this->db->join('level', 'murid.level = level.id');
+		return $this->db->get();
 		
 	}
 
@@ -44,12 +91,19 @@ class Murid_model extends CI_Model {
 		
 		$temp_nik = $outlet.$cat.$level;
 		$this->db->from('murid');
-		$this->db->like('nik', $temp_nik);
-		$temp = $this->db->select('id')->order_by('id',"desc")->limit(1)->get()->row('nik');
-		$number = substr($temp, 4);
-		$int = (int)$number;
+		$this->db->like('nik', $temp_nik, 'after');
+		$this->db->select('nik')->order_by('id',"desc");
+		$temps = $this->db->get()->first_row();
+		if ($temps != "") {
+			$temp = $temps->nik;
+			$number = substr($temp, 5);
+			$int = (int)$number;
+		} else {
+			$int = 0;
+		}
 		$last_nik = $int+1;
-		return $last_nik;
+		$res = sprintf('%05d', $last_nik);
+		return $res;
 		
 	}
 
@@ -62,9 +116,10 @@ class Murid_model extends CI_Model {
 	 * @param mixed $password
 	 * @return bool true on success, false on failure
 	 */
-	public function create_murid($nama, $tgllahir, $gender, $alamat, $notelp, $kategori, $level, $pajak, $price) {
+	public function create_murid($nik, $nama, $tgllahir, $gender, $alamat, $notelp, $kategori, $level, $pajak, $price, $outlet) {
 		
 		$data = array(
+			'nik'   => $nik,
 			'nama'   => $nama,
 			'tgllahir'      => $tgllahir,
 			'gender'      => $gender,
@@ -74,6 +129,7 @@ class Murid_model extends CI_Model {
 			'level' => $level,
 			'pajak' => $pajak,
 			'price' => $price,
+			'id_outlet' => $outlet,
 			'created_at' => date('Y-m-j H:i:s'),
 		);
 		
@@ -81,4 +137,23 @@ class Murid_model extends CI_Model {
 		
 	}
 	
+	public function update_murid($nik, $nama, $tgllahir, $gender, $alamat, $notelp, $pajak, $price, $outlet) {
+		
+		$data = array(
+			'nama'   => $nama,
+			'tgllahir'      => $tgllahir,
+			'gender'      => $gender,
+			'alamat'      => $alamat,
+			'notelp'   => $notelp,
+			'pajak' => $pajak,
+			'price' => $price,
+			'id_outlet' => $outlet,
+			'updated_at' => date('Y-m-j H:i:s'),
+		);
+		
+		$this->db->where('nik', $nik);
+		$this->db->update('murid', $data);
+		return $nik;
+		
+	}
 }

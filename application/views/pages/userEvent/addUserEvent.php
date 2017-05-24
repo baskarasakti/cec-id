@@ -37,7 +37,7 @@
                 <div class="box-body">
                   <div class="form-group">
                     <label>ID Event</label>
-                    <input type="text" class="form-control" placeholder="U11" name="idevent">
+                    <input type="text" class="form-control" placeholder="Auto Generate" name="idevent" disabled>
                   </div>
                   <div class="form-group">
                     <label>Nama Event</label>
@@ -67,18 +67,9 @@
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
                   </div>
                   <div class="form-group">
-                  <label>Outlet</label>
-                  <select class="form-control">
-                    <option value="1">Outlet 1</option>
-                    <option value="2">Outlet 2</option>
-                    <option value="3">Outlet 3</option>
-                    <option value="4">Outlet 4</option>
-                    <option value="5">Outlet 5</option>
-                    <option value="6">Outlet 6</option>
-                    <option value="7">Outlet 7</option>
-                    <option value="8">Outlet 8</option>
-                  </select>
-                </div>
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password Confirmation" name="password_confirm">
+                  </div>
                 <!-- /.box-body -->
 
                 <div class="box-footer">

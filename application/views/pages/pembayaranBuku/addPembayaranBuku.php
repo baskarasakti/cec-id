@@ -21,31 +21,44 @@
             <div class="col-md-6">
               <!-- general form elements -->
               <div class="box box-primary">
+              <?php if (validation_errors()) : ?>
+                <p><font color="red"><center><?= validation_errors() ?></center></font></p>
+              <?php endif; ?>
+              <?php if (isset($error)) : ?>
+                <p><font color="red"><center><?= $error ?></center></font></p>
+              <?php endif; ?>
+              <?php if (isset($success)) : ?>
+                <p><font color="green"><center><?= $success ?></center></font></p>
+              <?php endif; ?>
                 <!-- form start -->
-                <form role="form">
+                <?= form_open() ?>
                   <div class="box-body">
                     <div class="form-group">
                       <label for="nik">NIK</label>
-                      <input type="text" class="form-control" id="name" placeholder="Masukkan NIK">
-                    </div>
-                    <div class="form-group">
-                      <label for="tanggal1">Tanggal</label>
-                      <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask name="tanggal1">
+                      <input type="text" class="form-control" id="nik" placeholder="Masukkan NIK" name="nik">
                     </div>
                     <div class="form-group">
                       <label for="diskon1">Judul Buku</label>
-                      <select class="form-control">
-                        <option>English 1</option>
-                        <option>English 2</option>
-                        <option>English 3</option>
-                        <option>English 4</option>
-                        <option>English 5</option>
-                        <option>English 6</option>
+                      <select class="form-control" name="judul">
+                        <option selected disabled="disabled">Select Option</option>
+                        <?php foreach ($buku->result() as $bukus): ?>
+                        <option value="<?= $bukus->judul; ?>"><?= $bukus->judul; ?></option>
+                        <?php endforeach ?>
                       </select>
                     </div>
                     <div class="form-group">
                       <label for="jumlah1">Jumlah</label>
-                      <input type="text" class="form-control" id="name" placeholder="Masukkan jumlah">
+                      <input type="text" class="form-control" id="name" placeholder="Masukkan jumlah" name="jumlah">
+                    </div>
+                    <div class="form-group">
+                      <label for="diskon1">Periode Bulan</label>
+                      <select class="form-control" id="periode" name="periode">
+                        <?php for ($i=1; $i < 13; $i++) { 
+                          ?>
+                          <option value="<?= sprintf('%02d', $i)."-".date('Y'); ?>"><?= sprintf('%02d', $i)."-".date('Y'); ?></option>
+                          <?php
+                        } ?>
+                      </select>
                     </div>
                   </div><!-- /.box-body -->
 

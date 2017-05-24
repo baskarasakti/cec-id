@@ -16,16 +16,26 @@
         <section class="content">
           <div class="row">
             <div class="col-xs-12">
-
-              <div class="box box-primary">
-                <div class="box-header">
+              <?php if ($this->session->userdata('role_id') == 0): ?>
+                <p>Filter by outlet:</p>
+                <form method="get" action="<?= base_url()."pembayaranKursus?outlet=" ?>" accept-charset="utf-8">
+                  <div class="btn-group" role="group" style="margin-bottom: 10px;">
+                    <button type="submit" class="btn btn-default" value="0" name="outlet">All</button>
+                    <?php 
+                    foreach ($outlet->result() as $outlets) {
+                      ?>
+                      <button type="submit" class="btn btn-default" value="<?= $outlets->id; ?>" name="outlet"><?= $outlets->nama_outlet; ?></button>
+                      <?php
+                    }
+                    ?>
+                  </div>
+                </form>
+              <?php endif ?>
+              <div class="box box-success">
+                <div class="box-header with-border">
+                <h3 class="box-title">Master Data Pembayaran Kursus</h3>
                   <div class="pull-right">
-                    <a href="<?php echo base_url().'pembayaranKursus/add' ?>"><button class="btn btn-warning"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Transaksi</button></a>
-                    <div class="btn-group">
-                      <button class="btn btn-success">Excel</button>
-                      <button class="btn btn-danger">PDF</button>
-                      <button class="btn btn-primary">Word</button>
-                    </div>
+                    <a href="<?php echo base_url().'pembayaranKursus/add' ?>"><button class="btn btn-success btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Transaksi</button></a>
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
@@ -33,42 +43,35 @@
                     <thead>
                       <tr>
                         <th>Waktu</th>
-                        <th>Nama</th>
+                        <th>NIK</th>
                         <th>Periode</th>
+                        <th>Diskon</th>
                         <th>Jumlah</th>
+                        <th class="notPrintable">Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1/03/2017 13:55</td>
-                        <td>Handoko</td>
-                        <td>Maret 2017</td>
-                        <td>150.000</td>
-                      </tr>
-                      <tr>
-                        <td>3/03/2017 08:45</td>
-                        <td>Leonardo</td>
-                        <td>Maret 2017</td>
-                        <td>150.000</td>
-                      </tr>
-                      <tr>
-                        <td>3/03/2017 14:10</td>
-                        <td>Ridwan</td>
-                        <td>Maret 2017</td>
-                        <td>150.000</td>
-                      </tr>
-                      <tr>
-                        <td>5/03/2017 19:32</td>
-                        <td>Evelyn</td>
-                        <td>Maret 2017</td>
-                        <td>150.000</td>
-                      </tr>
-                      <tr>
-                        <td>7/03/2017 09:30</td>
-                        <td>Charoline</td>
-                        <td>Maret 2017</td>
-                        <td>150.000</td>
-                      </tr>
+                      <?php 
+                        if (isset($pembayaran_kursus)) {
+                          foreach ($pembayaran_kursus->result() as $pkursus) {
+                            ?>
+                              <tr>
+                                <td><?= $pkursus->created_at ?></td>
+                                <td><?= $pkursus->nik ?></td>
+                                <td><?= $pkursus->periode ?></td>
+                                <td><?= $pkursus->diskon ?></td>
+                                <td><?= $pkursus->jumlah ?></td>
+                                <?php if ($this->session->userdata('role_id') < 2): ?>
+                                <td>
+                                <a href="<?= base_url()."pembayaranKursus/edit/".$pkursus->id ?>" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></a>
+                                <a href="#" data-href="<?= base_url()."pembayaranKursus/delete/".$pkursus->id ?>" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#confirm-delete"><i class="fa fa-trash"></i></a>
+                                </td>
+                                <?php endif ?>
+                              </tr>
+                            <?php
+                          }
+                        }
+                      ?>
                     </tbody>
                   </table>
                 </div><!-- /.box-body -->

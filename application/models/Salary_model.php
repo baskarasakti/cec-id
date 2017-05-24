@@ -34,8 +34,19 @@ class Salary_model extends CI_Model {
 		
 	}
 
+	public function get_salary_outlet($outlet) {
+		
+		$this->db->select(array('*','salary.id as id_salary'));
+		$this->db->from('salary');
+		$this->db->where('id_outlet', $outlet);
+		$this->db->join('staff','staff.nik_staff=salary.nik_staff_salary','left');
+		return $this->db->get();
+		
+	}
+
 	public function get_salary_all() {
 		
+		$this->db->select(array('*','salary.id as id_salary'));
 		$this->db->from('salary');
 		$this->db->join('staff','staff.nik_staff=salary.nik_staff_salary','inner');
 		return $this->db->get();
@@ -43,7 +54,7 @@ class Salary_model extends CI_Model {
 	}
 
 	// public function get_last_nik($outlet,$cat,$level) {
-		
+
 	// 	$temp_nik = $outlet.$cat.$level;
 	// 	$this->db->from('staff');
 	// 	$this->db->like('nik', $temp_nik);
@@ -52,7 +63,7 @@ class Salary_model extends CI_Model {
 	// 	$int = (int)$number;
 	// 	$last_nik = $int+1;
 	// 	return $last_nik;
-		
+
 	// }
 
 	/**
@@ -72,9 +83,31 @@ class Salary_model extends CI_Model {
 			'bonus_salary'			=> $bonus,
 			'tanggal_salary'		=> $tgl,
 			'created_at' => date('Y-m-j H:i:s'),
-		);	
+			);	
 
 		return $this->db->insert('salary', $data);
+	}
+
+	public function update_salary($id, $gajipokok, $bonus, $tgl) {
+		
+		$data = array(
+			'gaji_pokok_salary'		=> $gajipokok,
+			'bonus_salary'			=> $bonus,
+			'tanggal_salary'		=> $tgl,
+			'created_at' => date('Y-m-j H:i:s'),
+			);	
+
+		$this->db->where('id', $id);
+		$this->db->update('salary', $data);
+		return $id;
+	}
+
+	public function delete_salary($id) {
+		
+		$this->db->where('id', $id);
+		$this->db->delete('salary');
+		return $id;
+		
 	}
 	
 }

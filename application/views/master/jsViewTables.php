@@ -5,6 +5,13 @@
     <!-- DataTables -->
     <script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.buttons.js"></script>
+    <script src="<?php echo base_url(); ?>assets/plugins/datatables/buttons.flash.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/plugins/datatables/jszip.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/plugins/datatables/vfs_fonts.js"></script>
+    <script src="<?php echo base_url(); ?>assets/plugins/datatables/buttons.html5.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/plugins/datatables/buttons.colVis.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/plugins/datatables/buttons.print.min.js"></script>
     <!-- SlimScroll -->
     <script src="<?php echo base_url(); ?>assets/plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
@@ -16,7 +23,23 @@
     <!-- page script -->
     <script>
       $(function () {
-        $("#example1").DataTable();
+        $("#example1").DataTable({
+          dom: 'Bfrtip',
+          buttons: [
+            {
+              extend: 'excel', 
+              exportOptions:{
+                columns: ':not(.notPrintable)'
+              }
+            },
+            {
+              extend: 'print', 
+              exportOptions:{
+                columns: ':not(.notPrintable)'
+              }
+            }
+          ]
+        });
         $('#example2').DataTable({
           "paging": true,
           "lengthChange": false,
@@ -25,5 +48,16 @@
           "info": true,
           "autoWidth": false
         });
+        var y = document.getElementsByClassName("buttons-excel");
+        y[0].classList.add('btn');
+        y[0].classList.add('btn-success');
+        var z = document.getElementsByClassName("buttons-print");
+        z[0].classList.add('btn');
+        z[0].classList.add('btn-primary');
+      });
+    </script>
+    <script>
+      $('#confirm-delete').on('show.bs.modal', function(e) {
+        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
       });
     </script>

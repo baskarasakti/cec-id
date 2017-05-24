@@ -34,6 +34,28 @@ class Outlet_model extends CI_Model {
 		
 	}
 
+	public function get_outlet_count() {
+		
+		$this->db->from('outlet');
+		$count = $this->db->count_all_results();
+		return $count;
+		
+	}
+
+	public function get_last_id_outlet() {
+		
+		$this->db->from('outlet');
+		$this->db->select('id_outlet')->order_by('id_outlet',"desc");
+		$temps = $this->db->get()->first_row();
+		$temp = $temps->id_outlet;
+		$number = $temp;
+		$int = (int)$number;
+		$last_id_outlet = $int+1;
+		$res = sprintf('%02d', $last_id_outlet);
+		return $res;
+		
+	}
+
 	public function get_outlet_all() {
 		
 		return $this->db->get('outlet');
@@ -41,7 +63,7 @@ class Outlet_model extends CI_Model {
 	}
 
 	// public function get_last_nik($outlet,$cat,$level) {
-		
+
 	// 	$temp_nik = $outlet.$cat.$level;
 	// 	$this->db->from('staff');
 	// 	$this->db->like('nik', $temp_nik);
@@ -50,7 +72,7 @@ class Outlet_model extends CI_Model {
 	// 	$int = (int)$number;
 	// 	$last_nik = $int+1;
 	// 	return $last_nik;
-		
+
 	// }
 
 	/**
@@ -70,9 +92,32 @@ class Outlet_model extends CI_Model {
 			'lokasi_outlet'	=> $lokasi,
 			'no_telp_outlet'=> $notelp,
 			'created_at' 	=> date('Y-m-j H:i:s'),
-		);	
+			);	
 
 		return $this->db->insert('outlet', $data);
+		
+	}
+
+	public function update_outlet($id, $nama, $lokasi, $notelp) {
+		
+		$data = array(
+			'nama_outlet'	=> $nama,
+			'lokasi_outlet'	=> $lokasi,
+			'no_telp_outlet'=> $notelp,
+			'created_at' 	=> date('Y-m-j H:i:s'),
+			);	
+
+		$this->db->where('id', $id);
+		$this->db->update('outlet', $data);
+		return $nama;
+		
+	}
+
+	public function delete_outlet($id) {
+		
+		$this->db->where('id', $id);
+		$this->db->delete('outlet');
+		return $id;
 		
 	}
 	

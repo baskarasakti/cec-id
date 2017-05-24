@@ -19,7 +19,7 @@
             <!-- left column -->
             <div class="col-md-6">
               <!-- general form elements -->
-              <div class="box box-primary">
+              <div class="box box-success">
                 <?php if (validation_errors()) : ?>
                   <p><font color="red"><center><?= validation_errors() ?></center></font></p>
                 <?php endif; ?>
@@ -55,7 +55,7 @@
                   </div><!-- /.box-body -->
 
                   <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
                   </div>
                 </form>
               </div><!-- /.box -->

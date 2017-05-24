@@ -23,3 +23,52 @@
         $("[data-mask]").inputmask();
       })
     </script>
+    <?php if ($this->session->userdata('role_id') > 0): ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var number = <?php echo $this->session->userdata('outlet'); ?>;
+            var res = pad(number,2);
+            document.getElementById('otl').value= res;
+        });
+        function pad(num, size) {
+            var s = num+"";
+            while (s.length < size) s = "0" + s;
+            return s;
+        }
+    </script>
+    <?php endif ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('select[name=kategori]').on('change', function(){
+                var id = $(this).val();
+                document.getElementById('cat').value=id.substring(0,1) ; 
+                document.getElementById('lvl').value="" ;
+            });
+        });
+        $(document).ready(function(){
+            $('select[name=level]').on('click', function(){
+                var id = $(this).val();
+                var padded_id = pad(id,2)
+                document.getElementById('lvl').value=padded_id ; 
+            });
+        });
+        $(document).ready(function(){
+            $('select[name=outlet]').on('click', function(){
+                var id = $(this).val();
+                var padded_id = pad(id,2)
+                document.getElementById('otl').value=padded_id ; 
+            });
+        });
+        function pad(num, size) {
+            var s = num+"";
+            while (s.length < size) s = "0" + s;
+            return s;
+        }
+    </script>
+    <?php if (isset($success)) : ?>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        window.open( "<?= base_url() ?>invoice?nik=<?= $nik ?>" );
+    });
+    </script>
+    <?php endif; ?>

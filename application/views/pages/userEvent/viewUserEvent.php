@@ -17,16 +17,11 @@
         <section class="content">
           <div class="row">
             <div class="col-xs-12">
-              <div class="box">
+              <div class="box box-success">
                 <div class="box-header with-border">
                   <h3 class="box-title">Master Data User</h3>
                   <div class="pull-right">
-                      <a href="<?php echo base_url().'event/userAdd';?>" class="btn btn-primary">Tambah Event</a>
-                      <div class="btn-group">
-                      <button type="button" class="btn btn-default">Excel</button>
-                      <button type="button" class="btn btn-default">PDF</button>
-                      <button type="button" class="btn btn-default">Word</button>
-                    </div>
+                      <a href="<?php echo base_url().'event/userAdd';?>"><button class="btn btn-success btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> Tambah User Event</button></a>
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
@@ -55,8 +50,8 @@
                             <td><?= $events->lokasi_event; ?></td>
                             <td><?= $events->user_event; ?></td>
                             <td>
-                              <a href="#" class="btn btn-default btn-xs">Edit</a>
-                              <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
+                              <a href="<?= base_url()."event/userEdit/".$events->id_event ?>" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></a>
+                              <a href="#" data-href="<?= base_url()."event/delete/".$events->id_event ?>" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#confirm-delete"><i class="fa fa-trash"></i></a>
                             </td>
                           </tr>
                           <?php 

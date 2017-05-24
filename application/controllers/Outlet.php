@@ -18,7 +18,7 @@ class Outlet extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-		public function __construct() {
+	public function __construct() {
 
 		parent::__construct();
 		$this->load->library(array('session'));
@@ -31,16 +31,18 @@ class Outlet extends CI_Controller {
 	{
 		// create the data object
 		$data = new stdClass();
+		$title = 'Outlet';
 
 		$outlet = $this->outlet_model->get_outlet_all();
-		$data = array('outlet' => $outlet );    
+		$data = array('outlet' => $outlet, 'title' => $title );    
 
 		$this->load->library('session');
 		if ($this->session->has_userdata('username')) {
 			$this->load->helper('url');
-			$this->load->view('master/header');
+			$this->load->view('master/header', $data);
 			$this->load->view('master/navigation');
 			$this->load->view('pages/outlet/viewOutlet', $data);
+			$this->load->view('master/delete');
 			$this->load->view('master/jsViewTables');
 			$this->load->view('master/footer');
 		} else {
@@ -63,46 +65,6 @@ class Outlet extends CI_Controller {
 		$this->form_validation->set_rules('notelp', 'No. Telp', 'required');
 
 		if ($this->form_validation->run() === false) {
-		$this->load->library('session');
-		if ($this->session->has_userdata('username')) {
-			$this->load->helper('url');
-			$this->load->view('master/header');
-			$this->load->view('master/navigation');
-			$this->load->view('pages/outlet/addOutlet');
-			$this->load->view('master/jsAdd');
-			$this->load->view('master/footer');
-		} else {
-			$this->load->helper('url');
-			header('location:'.base_url().'user/login');
-		}
-	} else {
-
-		$idoutlet = $this->input->post('idoutlet');
-		$nama = $this->input->post('nama');
-		$lokasi = $this->input->post('lokasi');
-		$notelp = $this->input->post('notelp');
-
-		if ($this->outlet_model->create_outlet($idoutlet, $nama, $lokasi, $notelp)) {
-
-			$success = "creation success";
-			$data = array('success' => $success );
-
-			$this->load->library('session');
-			if ($this->session->has_userdata('username')) {
-				$this->load->helper('url');
-				$this->load->view('master/header');
-				$this->load->view('master/navigation');
-				$this->load->view('pages/outlet/addOutlet', $data);
-				$this->load->view('master/jsAdd');
-				$this->load->view('master/footer');
-			} else {
-				$this->load->helper('url');
-				header('location:'.base_url().'user/login');
-			}
-		} else {
-			// user creation failed, this should never happen
-			$data->error = 'There was a problem creating new staff. Please try again.';
-
 			$this->load->library('session');
 			if ($this->session->has_userdata('username')) {
 				$this->load->helper('url');
@@ -115,8 +77,142 @@ class Outlet extends CI_Controller {
 				$this->load->helper('url');
 				header('location:'.base_url().'user/login');
 			}
+		} else {
+
+			$idoutlet = $this->outlet_model->get_last_id_outlet();
+			$nama = $this->input->post('nama');
+			$lokasi = $this->input->post('lokasi');
+			$notelp = $this->input->post('notelp');
+
+			if ($this->outlet_model->create_outlet($idoutlet, $nama, $lokasi, $notelp)) {
+
+				$success = "creation success";
+				$data = array('success' => $success );
+
+				$this->load->library('session');
+				if ($this->session->has_userdata('username')) {
+					$this->load->helper('url');
+					$this->load->view('master/header');
+					$this->load->view('master/navigation');
+					$this->load->view('pages/outlet/addOutlet', $data);
+					$this->load->view('master/jsAdd');
+					$this->load->view('master/footer');
+				} else {
+					$this->load->helper('url');
+					header('location:'.base_url().'user/login');
+				}
+			} else {
+			// user creation failed, this should never happen
+				$data->error = 'There was a problem creating new staff. Please try again.';
+
+				$this->load->library('session');
+				if ($this->session->has_userdata('username')) {
+					$this->load->helper('url');
+					$this->load->view('master/header');
+					$this->load->view('master/navigation');
+					$this->load->view('pages/outlet/addOutlet');
+					$this->load->view('master/jsAdd');
+					$this->load->view('master/footer');
+				} else {
+					$this->load->helper('url');
+					header('location:'.base_url().'user/login');
+				}
+			}
 		}
+
 	}
 
+	public function edit($id)
+	{
+		// create the data object
+		$data = new stdClass();
+		//$outlet_id = $this->input()->get('id');
+		$outlet = $this->outlet_model->get_outlet($id);
+		$data = array('outlet' => $outlet);
+
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+		// set validation rules
+		$this->form_validation->set_rules('nama', 'Nama Outlet', 'required');
+		$this->form_validation->set_rules('lokasi', 'Lokasi Outlet', 'required');
+		$this->form_validation->set_rules('notelp', 'No. Telp', 'required');
+
+		if ($this->form_validation->run() === false) {
+			$this->load->library('session');
+			if ($this->session->has_userdata('username')) {
+				$this->load->helper('url');
+				$this->load->view('master/header');
+				$this->load->view('master/navigation');
+				$this->load->view('pages/outlet/editOutlet', $data);
+				$this->load->view('master/jsAdd');
+				$this->load->view('master/footer');
+			} else {
+				$this->load->helper('url');
+				header('location:'.base_url().'user/login');
+			}
+		} else {
+
+			//$idoutlet = $this->outlet_model->get_last_id_outlet();
+			$nama = $this->input->post('nama');
+			$lokasi = $this->input->post('lokasi');
+			$notelp = $this->input->post('notelp');
+
+			if ($this->outlet_model->update_outlet($id, $nama, $lokasi, $notelp)) {
+
+				$success = "creation success";
+				$outlet = $this->outlet_model->get_outlet($id);
+				$data = array('success' => $success, 'outlet' => $outlet );
+
+				$this->load->library('session');
+				if ($this->session->has_userdata('username')) {
+					$this->load->helper('url');
+					$this->load->view('master/header');
+					$this->load->view('master/navigation');
+					$this->load->view('pages/outlet/editOutlet', $data);
+					$this->load->view('master/jsAdd');
+					$this->load->view('master/footer');
+				} else {
+					$this->load->helper('url');
+					header('location:'.base_url().'user/login');
+				}
+			} else {
+			// user creation failed, this should never happen
+				$data->error = 'There was a problem creating new staff. Please try again.';
+
+				$this->load->library('session');
+				if ($this->session->has_userdata('username')) {
+					$this->load->helper('url');
+					$this->load->view('master/header');
+					$this->load->view('master/navigation');
+					$this->load->view('pages/outlet/editOutlet', $data);
+					$this->load->view('master/jsAdd');
+					$this->load->view('master/footer');
+				} else {
+					$this->load->helper('url');
+					header('location:'.base_url().'user/login');
+				}
+			}
+		}
+
+	}
+
+	public function delete($id)
+	{
+		//$id = $this->input->get('id');
+		if ($this->outlet_model->delete_outlet($id)) {
+
+			$success = "delete success";
+			$data = array('success' => $success );
+				// user creation ok
+			$this->load->library('session');
+			if ($this->session->has_userdata('username')) {
+				$this->load->helper('url');
+				header('location:'.base_url().'outlet');
+			} else {
+				$this->load->helper('url');
+				header('location:'.base_url().'user/login');
+			}
+		}
 	}
 }

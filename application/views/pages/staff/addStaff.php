@@ -15,13 +15,11 @@
 
       <!-- Main content -->
       <section class="content">
-      </br></br>
         <div class="row">
           <!-- left column -->
-          <div class="col-md-2"></div>
           <div class="col-md-6">
             <!-- general form elements -->
-            <div class="box box-primary box-solid">
+            <div class="box box-success">
               <?php if (validation_errors()) : ?>
                 <p><font color="red"><center><?= validation_errors() ?></center></font></p>
               <?php endif; ?>
@@ -36,7 +34,7 @@
                 <div class="box-body">
                   <div class="form-group">
                     <label>NIK</label>
-                    <input type="text" class="form-control" placeholder="ex: S108649" name="nik">
+                    <input type="text" class="form-control" placeholder="" name="nik" disabled="disabled">
                   </div>
                   <div class="form-group">
                   <label>Nama Lengkap</label>
@@ -84,18 +82,17 @@
                   <div class="form-group">
                     <label>Outlet</label>
                     <select class="form-control" name="idoutlet">
-                    <option value="1">Outlet 1</option>
-                    <option value="2">Outlet 2</option>
-                    <option value="3">Outlet 3</option>
-                    <option value="4">Outlet 4</option>
-                    <option value="5">Outlet 5</option>
-                  </select>
+                      <option selected disabled="disabled">Select Option</option>
+                      <?php foreach ($outlet->result() as $outlets): ?>
+                      <option value="<?= $outlets->id; ?>"><?= $outlets->nama_outlet; ?></option>
+                      <?php endforeach ?>
+                    </select>
                   </div>
                 </div>
                 <!-- /.box-body -->
 
                 <div class="box-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-success">Submit</button>
                 </div>
               </form>
             </div>

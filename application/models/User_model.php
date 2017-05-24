@@ -24,6 +24,14 @@ class User_model extends CI_Model {
 		return $this->db->get('user');
 		
 	}
+
+	public function get_user_count() {
+		
+		$this->db->from('user');
+		$count = $this->db->count_all_results();
+		return $count;
+		
+	}
 	
 	/**
 	 * create_user function.
@@ -46,6 +54,23 @@ class User_model extends CI_Model {
 		);
 		
 		return $this->db->insert('user', $data);
+		
+	}
+
+	public function update_user($id, $username, $user_level, $password, $name, $outlet) {
+		
+		$data = array(
+			'username'   => $username,
+			'flag'      => $user_level,
+			'name'      => $name,
+			'outlet'      => $outlet,
+			'password'   => $this->hash_password($password),
+			'updated_at' => date('Y-m-j H:i:s'),
+		);
+		
+		$this->db->where('id', $id);
+		$this->db->update('user', $data);
+		return $username;
 		
 	}
 	
@@ -95,6 +120,22 @@ class User_model extends CI_Model {
 		
 		$this->db->from('user');
 		$this->db->where('id', $user_id);
+		return $this->db->get()->row();
+		
+	}
+
+	public function delete_user($user_id) {
+		
+		$this->db->where('id', $user_id);
+		$this->db->delete('user');
+		return $user_id;
+		
+	}
+
+	public function get_user_by_username($username) {
+		
+		$this->db->from('user');
+		$this->db->where('id', $username);
 		return $this->db->get()->row();
 		
 	}

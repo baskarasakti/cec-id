@@ -15,17 +15,11 @@
 
             <!-- Main content -->
       <section class="content">
-      <br><br>
         <div class="row">
-        <div class="col-md-2">
-        </div>
           <!-- left column -->
           <div class="col-md-6">
             <!-- general form elements -->
-            <div class="box box-primary box-solid">
-              <div class="box-header with-border">
-                <h3 class="box-title">Add New User</h3>
-              </div>
+            <div class="box box-success">
               <!-- /.box-header -->
               <?php if (validation_errors()) : ?>
                 <p class="login-box-msg">
@@ -68,19 +62,16 @@
                   <div class="form-group">
                     <label>Outlet</label>
                     <select class="form-control" name="outlet">
-                      <option value="1">Outlet 1</option>
-                      <option value="2">Outlet 2</option>
-                      <option value="3">Outlet 3</option>
-                      <option value="4">Outlet 4</option>
-                      <option value="5">Outlet 5</option>
-                      <option value="6">Outlet 6</option>
-                      <option value="7">Outlet 7</option>
-                      <option value="8">Outlet 8</option>
+                      <option selected="selected" disabled="disabled">Select Option</option>
+                      <?php foreach ($outlet->result() as $outlets): ?>
+                      <option value="<?= $outlets->id; ?>"><?= $outlets->nama_outlet; ?></option>
+                      <?php endforeach ?>
                     </select>
                   </div>
                   <div class="form-group">
                     <label>User Level</label>
                     <select class="form-control" name="user_level">
+                      <option selected="selected" disabled="disabled">Select Option</option>
                       <option value="1">Co Owner</option>
                       <option value="2">Staff Admin</option>
                     </select>
@@ -88,7 +79,7 @@
                 <!-- /.box-body -->
 
                 <div class="box-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-success">Submit</button>
                 </div>
               </form>
             </div>

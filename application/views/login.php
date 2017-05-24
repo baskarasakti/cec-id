@@ -33,6 +33,7 @@
             </div><!-- /.col -->
           </div>
         </form>
+        <a href="<?= base_url().'event/login' ?>">Klik disini untuk login sebagai event</a>
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->

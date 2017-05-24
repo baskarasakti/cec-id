@@ -20,38 +20,53 @@
             <div class="col-md-6">
               <!-- general form elements -->
               <div class="box box-primary">
+                <?php if (validation_errors()) : ?>
+                  <p><font color="red"><center><?= validation_errors() ?></center></font></p>
+                <?php endif; ?>
+                <?php if (isset($error)) : ?>
+                  <p><font color="red"><center><?= $error ?></center></font></p>
+                <?php endif; ?>
+                <?php if (isset($success)) : ?>
+                  <p><font color="green"><center><?= $success ?></center></font></p>
+                <?php endif; ?>
                 <!-- form start -->
-                <form role="form">
+                <?= form_open() ?>
                   <div class="box-body">
                     <div class="form-group">
                       <label for="Item">Item</label>
-                      <input type="text" class="form-control" id="nama" placeholder="Masukkan Item">
+                      <input type="text" class="form-control" id="nama" placeholder="Masukkan Item" name="item">
                     </div>
                     <div class="form-group">
                       <label for="Periode">Periode</label>
-                      <select class="form-control">
-                        <option>Januari 2017</option>
-                        <option>Februari 2017</option>
-                        <option>Maret 2017</option>
-                        <option>April 2017</option>
-                        <option>Mei 2017</option>
-                        <option>Juni 2017</option>
-                        <option>Juli 2017</option>
-                        <option>Agustus 2017</option>
-                        <option>September 2017</option>
-                        <option>Oktober 2017</option>
-                        <option>Nopember 2017</option>
-                        <option>Desember 2017</option>
+                      <select class="form-control" id="periode" name="periode">
+                        <?php for ($i=1; $i < 13; $i++) { 
+                          ?>
+                          <option value="<?= sprintf('%02d', $i)."-".date('Y'); ?>"><?= sprintf('%02d', $i)."-".date('Y'); ?></option>
+                          <?php
+                        } ?>
                       </select>
                     </div>
                     <div class="form-group">
                       <label for="Jumlah">Jumlah</label>
-                      <input type="text" class="form-control" id="nama" placeholder="Masukkan Jumlah">
+                      <input type="text" class="form-control" id="jumlah" placeholder="Masukkan Jumlah" name="jumlah">
                     </div>
                     <div class="form-group">
-                      <label for="tanggal1">Tanggal</label>
-                      <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask name="tanggal1">
+                      <label for="deskripsi">Deskripsi</label>
+                      <textarea class="form-control" id="deskripsi" placeholder="Tulis Deskripsi" name="deskripsi"></textarea>
                     </div>
+                    <?php if ($this->session->userdata('role') == 0): ?>
+                    <div class="form-group">
+                      <label for="first">Outlet</label>
+                      <select class="form-control" name="outlet">
+                        <option selected="selected" disabled="disabled">Select Option</option>
+                        <?php foreach ($outlet->result() as $outlets): ?>
+                        <option value="<?= $outlets->id; ?>"><?= $outlets->nama_outlet; ?></option>
+                        <?php endforeach ?>
+                      </select>
+                    </div>
+                    <?php else : ?>
+                    <input type="hidden" name="outlet" value="<?php echo $this->session->userdata('outlet'); ?>">
+                    <?php endif ?>
                   </div><!-- /.box-body -->
 
                   <div class="box-footer">

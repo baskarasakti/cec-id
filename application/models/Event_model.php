@@ -26,7 +26,7 @@ class Event_model extends CI_Model {
 	 * @param mixed $id
 	 * @return object the user object
 	 */
-	public function get_event($id) {
+	public function get_user_event($id) {
 		
 		$this->db->from('event');
 		$this->db->where('id', $id);
@@ -39,6 +39,20 @@ class Event_model extends CI_Model {
 		return $this->db->get('event');
 		
 	}
+
+	public function get_peserta_all() {
+		
+		return $this->db->get('peserta');
+		
+	}
+
+	public function get_costevent_all() {
+		
+		return $this->db->get('costevent');
+		
+	}
+
+
 
 	// public function get_last_nik($outlet,$cat,$level) {
 		
@@ -70,11 +84,89 @@ class Event_model extends CI_Model {
 			'tanggal_event'		=> $tgl,
 			'lokasi_event'		=> $lokasi,
 			'user_event'		=> $email,
-			'password_event'	=> $password,
+			'password_event'	=> $this->hash_password($password),
 			'created_at' => date('Y-m-j H:i:s'),
 		);	
 
 		return $this->db->insert('event', $data);
+		
+	}
+
+	public function create_peserta($idpeserta, $nama, $alamat, $notelp, $kategori, $kelas) {
+		
+		$data = array(
+			'id_peserta' 		=> $idpeserta,
+			'nama_peserta'		=> $nama,
+			'alamat_peserta'	=> $alamat,
+			'no_telp_peserta'	=> $notelp,
+			'kategori_peserta'	=> $kategori,
+			'kelas_peserta'		=> $kelas,
+			'created_at' => date('Y-m-j H:i:s'),
+		);	
+
+		return $this->db->insert('peserta', $data);
+		
+	}
+
+	/**
+	 * resolve_user_login function.
+	 * 
+	 * @access public
+	 * @param mixed $username
+	 * @param mixed $password
+	 * @return bool true on success, false on failure
+	 */
+	public function resolve_user_event_login($username, $password) {
+		
+		$this->db->select('password_event');
+		$this->db->from('event');
+		$this->db->where('user_event', $username);
+		$hash = $this->db->get()->row('password_event');
+		
+		return $this->verify_password_hash($password, $hash);
+		
+	}
+	
+	/**
+	 * get_user_id_from_username function.
+	 * 
+	 * @access public
+	 * @param mixed $username
+	 * @return int the user id
+	 */
+	public function get_user_event_id_from_username($username) {
+		
+		$this->db->select('id');
+		$this->db->from('event');
+		$this->db->where('user_event', $username);
+		return $this->db->get()->row('id');
+		
+	}
+
+	/**
+	 * hash_password function.
+	 * 
+	 * @access private
+	 * @param mixed $password
+	 * @return string|bool could be a string on success, or bool false on failure
+	 */
+	private function hash_password($password) {
+		
+		return password_hash($password, PASSWORD_BCRYPT);
+		
+	}
+	
+	/**
+	 * verify_password_hash function.
+	 * 
+	 * @access private
+	 * @param mixed $password
+	 * @param mixed $hash
+	 * @return bool
+	 */
+	private function verify_password_hash($password, $hash) {
+		
+		return password_verify($password, $hash);
 		
 	}
 	

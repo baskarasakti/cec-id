@@ -16,15 +16,10 @@
           <div class="row">
             <div class="col-xs-12">
 
-              <div class="box box-primary">
+              <div class="box box-success">
                 <div class="box-header">
                   <div class="pull-right">
-                    <a href="<?php echo base_url().'buku/add' ?>"><button class="btn btn-warning"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Buku</button></a>
-                    <div class="btn-group">
-                      <button class="btn btn-success">Excel</button>
-                      <button class="btn btn-danger">PDF</button>
-                      <button class="btn btn-primary">Word</button>
-                    </div>
+                    <a href="<?php echo base_url().'buku/add' ?>"><button class="btn btn-success btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Buku</button></a>
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
@@ -36,7 +31,7 @@
                         <th>Pengarang</th>
                         <th>Penerbit</th>
                         <th>Harga</th>
-                        <th>Action</th>
+                        <th class="notPrintable">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -51,8 +46,8 @@
                                 <td><?= $book->penerbit ?></td>
                                 <td><?= $book->harga ?></td>
                                 <td>
-                                  <button class="btn btn-xs"><a href="editBuku.html">edit</a></button>
-                                  <button class="btn btn-danger btn-xs">delete</button>
+                                  <a href="<?php echo base_url().'buku/edit?id='.$book->id;?>" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></a>
+                                  <a href="#" data-href="<?php echo base_url().'buku/delete?id='.$book->id;?>" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#confirm-delete"><i class="fa fa-trash"></i></a>
                                 </td>
                               </tr>
                             <?php

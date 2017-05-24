@@ -17,16 +17,11 @@
         <section class="content">
           <div class="row">
             <div class="col-xs-12">
-              <div class="box">
+              <div class="box box-success">
                 <div class="box-header with-border">
                   <h3 class="box-title">Master Data Outlet</h3>
                   <div class="pull-right">
-                      <a href="<?php echo base_url().'salary/add';?>" class="btn btn-primary">Tambah Outlet</a>
-                      <div class="btn-group">
-                      <button type="button" class="btn btn-default">Excel</button>
-                      <button type="button" class="btn btn-default">PDF</button>
-                      <button type="button" class="btn btn-default">Word</button>
-                    </div>
+                    <a href="<?php echo base_url().'outlet/add';?>"><button class="btn btn-success btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Outlet</button></a>
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
@@ -53,8 +48,8 @@
                           <td><?= $outlets->lokasi_outlet; ?></td>
                           <td><?= $outlets->no_telp_outlet; ?></td>
                           <td>
-                            <a href="#" class="btn btn-default btn-xs">Edit</a>
-                            <a href="#" class="btn btn-danger btn-xs  ">Delete</a>
+                            <a href="<?php echo base_url().'outlet/edit/'.$outlets->id;?>" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></a>
+                            <a href="#" data-href="<?php echo base_url().'outlet/delete/'.$outlets->id;?>" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#confirm-delete"><i class="fa fa-trash"></i></a>
                           </td>
                         </tr>
                       <?php 

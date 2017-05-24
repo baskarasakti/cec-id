@@ -19,15 +19,6 @@
             <div class="col-xs-12">
 
               <div class="box">
-                <div class="box-header">
-                  <div class="pull-right">
-                    <div class="btn-group">
-                      <button class="btn btn-success">Excel</button>
-                      <button class="btn btn-danger">PDF</button>
-                      <button class="btn btn-primary">Word</button>
-                    </div>
-                  </div>
-                </div><!-- /.box-header -->
                 <div class="box-body">
                   <table id="example1" class="table table-bordered table-striped">
                     <thead>

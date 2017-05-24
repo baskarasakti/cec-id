@@ -15,13 +15,11 @@
 
       <!-- Main content -->
       <section class="content">
-      </br></br>
         <div class="row">
           <!-- left column -->
-          <div class="col-md-2"></div>
           <div class="col-md-6">
             <!-- general form elements -->
-            <div class="box box-primary box-solid">
+            <div class="box box-success">
             <?php if (validation_errors()) : ?>
                 <p><font color="red"><center><?= validation_errors() ?></center></font></p>
               <?php endif; ?>
@@ -37,33 +35,33 @@
                 <div class="">
                   <h4 class="pull-left"><b>IDENTITAS PEGAWAI</b></h4>
                   <div class="pull-right">
-                      <a href="<?php echo base_url().'staff';?>"" class="btn btn-primary">Lihat Daftar Pegawai</a>
+                      <a href="<?php echo base_url().'staff';?>" class="btn btn-success">Lihat Daftar Pegawai</a>
                   </div>
                 </div>
                 <br>
                 <hr>
                 <div class="form-group">
                   <label>NIK</label>
-                  <input type="text" class="form-control" placeholder="098877555" name="nik">
+                  <input type="text" class="form-control" placeholder="098877555" name="nik" value="<?php if ($staff != ''){echo $staff->nik_staff;} ?>">
                 </div>
                 <div class="form-group">
                   <label>Nama Pegawai</label>
                   <div class="row">
                     <div class="col-xs-6">
-                      <input type="text" class="form-control" placeholder="Ilham" disabled>
+                      <input type="text" class="form-control" placeholder="Ilham" disabled value="<?php if ($staff != ''){echo $staff->nama_depan_staff;} ?>">
                     </div>
                     <div class="col-xs-6">
-                      <input type="text" class="form-control" placeholder="Sukmawan" disabled>
+                      <input type="text" class="form-control" placeholder="Sukmawan" disabled value="<?php if ($staff != ''){echo $staff->nama_belakang_staff;} ?>">
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
                   <label>Alamat</label>
-                  <input type="text" class="form-control" placeholder="Jl. Abcdefgh no 28" disabled>
+                  <input type="text" class="form-control" placeholder="Jl. Abcdefgh no 28" disabled value="<?php if ($staff != ''){echo $staff->alamat_staff;} ?>">
                 </div>
                 <div class="form-group">
                   <label>Outlet</label>
-                  <input type="text" class="form-control" placeholder="Mulyosari" disabled>
+                  <input type="text" class="form-control" placeholder="Mulyosari" disabled value="<?php if ($staff != ''){echo $staff->nama_outlet;} ?>">
                 </div>
                 </br>
                 <div class="">
@@ -93,13 +91,13 @@
                   <label class="col-sm-3 control-label"><b>Total Gaji  : </b></label>
 
                   <div class="col-sm-9">
-                    <input type="email" class="form-control" placeholder="57.000.000" disabled>
+                    <input type="email" class="form-control" placeholder="" disabled>
                   </div>
                 </div>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                  <button type="submit" class="btn btn-primary">Submit Gaji</button>
+                  <button type="submit" class="btn btn-success">Submit Gaji</button>
                 </div>
 
                 <br>

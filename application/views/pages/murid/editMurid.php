@@ -19,7 +19,7 @@
             <!-- left column -->
             <div class="col-md-6">
               <!-- general form elements -->
-              <div class="box box-primary">
+              <div class="box box-success">
                 <!-- form start -->
                 <form role="form">
                   <div class="box-body">
@@ -67,7 +67,7 @@
                   </div><!-- /.box-body -->
 
                   <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
                   </div>
                 </form>
               </div><!-- /.box -->
