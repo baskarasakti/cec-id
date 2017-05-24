@@ -196,13 +196,16 @@ class Murid extends CI_Controller {
       $pajak = $this->input->post('pajak');
       $price = $this->input->post('price');
       $outlet = $this->input->post('outlet');
+      $keluar = $this->input->post('keluar');
 
-      $asd = $this->murid_model->update_murid($nik, $nama, $tgllahir, $gender, $alamat, $notelp, $pajak, $price, $outlet);
+      //$asd = $this->murid_model->update_murid($nik, $nama, $tgllahir, $gender, $alamat, $notelp, $pajak, $price, $outlet,$keluar);
 
-      if ($this->murid_model->update_murid($nik, $nama, $tgllahir, $gender, $alamat, $notelp, $pajak, $price, $outlet)) {
+      if ($this->murid_model->update_murid($nik, $nama, $tgllahir, $gender, $alamat, $notelp, $pajak, $price, $outlet,$keluar)) {
 
         $success = "update success";
-        $data = array('success' => $success );
+        $outlet = $this->outlet_model->get_outlet_all();
+        $murid = $this->murid_model->get_murid($nik);
+        $data = array('success' => $success,'outlet'=>$outlet,'nik'=>$nik,'murid'=>$murid );
 
         $this->load->library('session');
         if ($this->session->has_userdata('username')) {

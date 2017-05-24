@@ -137,7 +137,7 @@ class Murid_model extends CI_Model {
 		
 	}
 	
-	public function update_murid($nik, $nama, $tgllahir, $gender, $alamat, $notelp, $pajak, $price, $outlet) {
+	public function update_murid($nik, $nama, $tgllahir, $gender, $alamat, $notelp, $pajak, $price, $outlet,$keluar) {
 		
 		$data = array(
 			'nama'   => $nama,
@@ -148,6 +148,7 @@ class Murid_model extends CI_Model {
 			'pajak' => $pajak,
 			'price' => $price,
 			'id_outlet' => $outlet,
+			'keluar' => $keluar,
 			'updated_at' => date('Y-m-j H:i:s'),
 		);
 		

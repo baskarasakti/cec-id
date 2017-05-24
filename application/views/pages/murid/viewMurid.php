@@ -56,15 +56,18 @@
                       <?php 
                         if (isset($murid)) {
                           foreach ($murid->result() as $murids) {
+                            if ($murids->keluar == 1) {
+                              $font = "red";
+                            } else {$font = "black";}
                             ?>
                             <tr>
-                              <td><?= $murids->nik; ?></td>
-                              <td><?= $murids->nama; ?></td>
-                              <td><?= $murids->alamat; ?></td>
-                              <td><?= $murids->notelp; ?></td>
-                              <td><?= $murids->kategori; ?></td>
-                              <td><?= $murids->levels; ?></td>
-                              <td><?= $murids->price; ?></td>
+                              <td><font color="<?= $font ?>"><?= $murids->nik; ?></font></td>
+                              <td><font color="<?= $font ?>"><?= $murids->nama; ?></font></td>
+                              <td><font color="<?= $font ?>"><?= $murids->alamat; ?></font></td>
+                              <td><font color="<?= $font ?>"><?= $murids->notelp; ?></font></td>
+                              <td><font color="<?= $font ?>"><?= $murids->kategori; ?></font></td>
+                              <td><font color="<?= $font ?>"><?= $murids->levels; ?></font></td>
+                              <td><font color="<?= $font ?>"><?= $murids->price; ?></font></td>
                               <td>
                                 <a href="<?php echo base_url().'murid/edit/'.$murids->nik;?>" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></a>
                                 <a href="<?php echo base_url().'invoice?nik='.$murids->nik;?>" class="btn btn-success btn-xs"><i class="fa fa-money"></i></a>

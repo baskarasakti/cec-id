@@ -65,7 +65,7 @@
             return s;
         }
     </script>
-    <?php if (isset($success)) : ?>
+    <?php if (isset($success) && $murid == "") : ?>
     <script type="text/javascript">
     $(document).ready(function(){
         window.open( "<?= base_url() ?>invoice?nik=<?= $nik ?>" );

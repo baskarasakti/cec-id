@@ -129,8 +129,18 @@
                       <input type="price" class="form-control" id="name" placeholder="Masukkan Price" name="price">
                       <?php endif ?>
                     </div>
-                    <?php if ($this->session->userdata('role') == 0): ?>
+                    <?php if ($this->session->userdata('role') == 0 && isset($murid) ): ?>
                     <div class="form-group">
+                      <label for="first">Outlet</label>
+                      <select class="form-control" name="outlet">
+                        <option selected="selected" disabled="disabled">Select Option</option>
+                        <?php foreach ($outlet->result() as $outlets): ?>
+                        <option <?php if ($murid->id_outlet == $outlets->id ) echo 'selected' ; ?> value="<?= $outlets->id; ?>"><?= $outlets->nama_outlet; ?></option>
+                        <?php endforeach ?>
+                      </select>
+                    </div>
+                    <?php elseif ($this->session->userdata('role') == 0) : ?>
+                      <div class="form-group">
                       <label for="first">Outlet</label>
                       <select class="form-control" name="outlet">
                         <option selected="selected" disabled="disabled">Select Option</option>
@@ -141,6 +151,14 @@
                     </div>
                     <?php else : ?>
                     <input type="hidden" name="outlet" value="<?php echo $this->session->userdata('outlet'); ?>">
+                    <?php endif ?>
+                    <?php if (isset($murid)): ?>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="1" name="keluar" <?php if ($murid->keluar == 1) { echo "checked"; }?>> Keluar
+                      </label>
+                    </div>
+                    <?php else : ?>
                     <?php endif ?>
                     
                     <!--div class="form-group">
