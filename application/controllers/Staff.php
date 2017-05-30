@@ -188,7 +188,7 @@ class Staff extends CI_Controller {
 			}
 		} else {
 
-			//$nik = $this->input->post('nik');
+			$nik = $this->input->post('nik');
 			$namadepan = $this->input->post('namadepan');
 			$namabelakang = $this->input->post('namabelakang');
 			$tgllahir = $this->input->post('tgllahir');

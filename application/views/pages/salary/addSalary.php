@@ -42,7 +42,7 @@
                 <hr>
                 <div class="form-group">
                   <label>NIK</label>
-                  <input type="text" class="form-control" placeholder="098877555" name="nik" value="<?php if ($staff != ''){echo $staff->nik_staff;} ?>">
+                  <input type="text" class="form-control" name="nik" value="<?php if ($staff != ''){echo $staff->nik_staff;} ?>">
                 </div>
                 <div class="form-group">
                   <label>Nama Pegawai</label>

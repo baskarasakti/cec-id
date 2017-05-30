@@ -34,7 +34,7 @@
                 <div class="box-body">
                   <div class="form-group">
                     <label>NIK</label>
-                    <input type="text" class="form-control" placeholder="ex: S108649" name="nik" value="<?= $staff->nik_staff ?>">
+                    <input type="text" class="form-control" name="nik" value="<?= $staff->nik_staff ?>">
                   </div>
                   <div class="form-group">
                   <label>Nama Lengkap</label>

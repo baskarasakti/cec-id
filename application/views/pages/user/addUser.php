@@ -40,10 +40,6 @@
               <?= form_open() ?>
                 <div class="box-body">
                   <div class="form-group">
-                    <label>ID User</label>
-                    <input type="text" class="form-control" placeholder="U11" disabled="">
-                  </div>
-                  <div class="form-group">
                     <label>Nama User</label>
                     <input type="text" class="form-control" placeholder="Nama User" name="name">
                   </div>

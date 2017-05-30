@@ -31,6 +31,15 @@ class Staff_model extends CI_Model {
 		$this->db->from('staff');
 		$this->db->where('nik_staff', $nik);
 		$this->db->join('outlet', 'staff.id_outlet = outlet.id');
+		return $this->db->get()->row();
+		
+	}
+
+	public function get_staff_salary($nik) {
+		
+		$this->db->from('staff');
+		$this->db->where('nik_staff', $nik);
+		$this->db->join('outlet', 'staff.id_outlet = outlet.id');
 		$this->db->join('salary', 'staff.nik_staff = salary.nik_staff_salary');
 		return $this->db->get()->row();
 		

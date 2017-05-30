@@ -151,7 +151,7 @@ class Salary extends CI_Controller {
 		$id = $this->input->get('id');
 		$salary = $this->salary_model->get_salary($id);
 		if ($nik != "") {
-			$staff = $this->staff_model->get_staff($nik);
+			$staff = $this->staff_model->get_staff_salary($nik);
 		} else {
 			$staff = "";
 		}

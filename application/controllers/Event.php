@@ -43,6 +43,7 @@ class Event extends CI_Controller {
 			$this->load->view('master/header', $data);
 			$this->load->view('master/navigation');
 			$this->load->view('pages/userEvent/viewUserEvent', $data);
+			$this->load->view('master/delete');
 			$this->load->view('master/jsViewTables');
 			$this->load->view('master/footer');
 		} else {
@@ -83,7 +84,7 @@ class Event extends CI_Controller {
 			}
 		} else {
 
-			$idevent = $this->input->post('idevent');
+			$idevent = $this->event_model->get_last_id_user_event();
 			$nama = $this->input->post('nama');
 			$tgl = $this->input->post('tgl');
 			$lokasi = $this->input->post('lokasi');
@@ -125,6 +126,117 @@ class Event extends CI_Controller {
 					$this->load->helper('url');
 					header('location:'.base_url().'user/login');
 				}
+			}
+		}
+	}
+
+	public function userEdit($idevent)
+	{
+		 // create the data object
+		$data = new stdClass();
+		$event = $this->event_model->get_user_event($idevent);
+		$data = array('event' => $event);
+
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+		if($this->input->post('email') != $event->user_event) {
+		   $is_unique =  '|is_unique[event.user_event]';
+		} else {
+		   $is_unique =  '';
+		}
+
+		if($this->input->post('password') != "") {
+		   $required =  '|required';
+		} else {
+		   $required =  '';
+		}
+
+    	// set validation rules
+		$this->form_validation->set_rules('nama', 'Nama Event', 'required');
+		$this->form_validation->set_rules('tgl', 'Tanggal Event', 'required');
+		$this->form_validation->set_rules('lokasi', 'Lokasi Event', 'required');
+		$this->form_validation->set_rules('email', 'Email Event', 'trim|required|valid_email|min_length[10]'.$is_unique, array('is_unique' => 'This username already exists. Please choose another one.'));
+		$this->form_validation->set_rules('password', 'Password', 'trim|min_length[6]'.$required);
+		$this->form_validation->set_rules('password_confirm', 'Confirm Password', 'trim|min_length[6]|matches[password]'.$required);
+
+		if ($this->form_validation->run() === false) {
+
+			$this->load->library('session');
+			if ($this->session->has_userdata('username')) {
+				$this->load->helper('url');
+				$this->load->view('master/header');
+				$this->load->view('master/navigation');
+				$this->load->view('pages/userEvent/editUserEvent', $data);
+				$this->load->view('master/jsAdd');
+				$this->load->view('master/footer');
+			} else {
+				$this->load->helper('url');
+				header('location:'.base_url().'user/login');
+			}
+		} else {
+
+			$nama = $this->input->post('nama');
+			$tgl = $this->input->post('tgl');
+			$lokasi = $this->input->post('lokasi');
+			$email = $this->input->post('email');
+			$password = $this->input->post('password');
+
+			if ($this->event_model->create_event($idevent, $nama, $tgl, $lokasi, $email, $password)) {
+
+				$success = "update success";
+				$event = $this->event_model->get_user_event($idevent);
+				$data = array('success' => $success, 'event' => $event );
+
+				$this->load->library('session');
+				if ($this->session->has_userdata('username')) {
+					$this->load->helper('url');
+					$this->load->view('master/header');
+					$this->load->view('master/navigation');
+					$this->load->view('pages/userEvent/editUserEvent', $data);
+					$this->load->view('master/jsAdd');
+					$this->load->view('master/footer');
+				} else {
+					$this->load->helper('url');
+					header('location:'.base_url().'user/login');
+				}
+
+			} else {
+
+        // user creation failed, this should never happen
+				$data->error = 'There was a problem creating new event. Please try again.';
+
+				$this->load->library('session');
+				if ($this->session->has_userdata('username')) {
+					$this->load->helper('url');
+					$this->load->view('master/header');
+					$this->load->view('master/navigation');
+					$this->load->view('pages/userEvent/editUserEvent', $data);
+					$this->load->view('master/jsAdd');
+					$this->load->view('master/footer');
+				} else {
+					$this->load->helper('url');
+					header('location:'.base_url().'user/login');
+				}
+			}
+		}
+	}
+
+	public function delete($id)
+	{
+		//$id = $this->input->get('id');
+		if ($this->event_model->delete_userEvent($id)) {
+
+			$success = "delete success";
+			$data = array('success' => $success );
+				// user creation ok
+			$this->load->library('session');
+			if ($this->session->has_userdata('username')) {
+				$this->load->helper('url');
+				header('location:'.base_url().'event/userView');
+			} else {
+				$this->load->helper('url');
+				header('location:'.base_url().'user/login');
 			}
 		}
 	}

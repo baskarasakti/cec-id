@@ -40,10 +40,6 @@
           <?= form_open() ?>
           <div class="box-body">
             <div class="form-group">
-              <label>ID Outlet</label>
-              <input type="text" class="form-control" placeholder="" disabled="">
-            </div>
-            <div class="form-group">
               <label>Nama Outlet</label>
               <input type="text" class="form-control" placeholder="Nama Outlet" name="nama">
             </div>
