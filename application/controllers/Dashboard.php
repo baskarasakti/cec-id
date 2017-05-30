@@ -32,7 +32,7 @@ class Dashboard extends CI_Controller {
     	$checked_outlet = $this->session->userdata('outlet');
     	if ($checked_outlet > 0) {
     		$murid = $this->murid_model->get_murid_outlet_count($checked_outlet);
-    		$murid_belumbayar = $this->pkursus_model->get_murid_belumbayar_outlet_count($checked_outlet);
+    		$murid_belumbayar = $this->pkursus_model->get_murid_belumbayar_outlet_count($checked_outlet, date('m-Y'));
     		$staff = $this->staff_model->get_staff_outlet_count($checked_outlet);
     		$operational_cost = $this->opcost_model->get_operational_cost_outlet($checked_outlet);
     		$murid_per_level = $this->murid_model->get_murid_per_outlet_per_level($checked_outlet)->result();
