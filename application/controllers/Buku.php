@@ -34,6 +34,7 @@ class Buku extends CI_Controller {
 			$this->load->view('master/header', $data);
 			$this->load->view('master/navigation');
 			$this->load->view('pages/buku/viewBuku', $data);
+			$this->load->view('master/delete');
 			$this->load->view('master/jsViewTables');
 			$this->load->view('master/footer');
 		} else {
