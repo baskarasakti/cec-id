@@ -17,33 +17,40 @@
         <section class="content">
           <div class="row">
             <div class="col-xs-12">
-
+              <p>Filter by periode:</p>
+                <form method="get" action="<?php echo base_url().'report/repBuku';?>" accept-charset="utf-8">
+                  <div class="btn-group" role="group" style="margin-bottom: 10px;">
+                    <?php 
+                    foreach ($buku->result() as $bukus) {
+                      ?>
+                      <button type="submit" class="btn btn-default" value="<?= $bukus->id ?>" name="idbuku"><?= $bukus->judul ?></button>
+                      <?php
+                    }
+                    ?>
+                  </div>
+                </form>
               <div class="box">
                 <div class="box-body">
                   <table id="example1" class="table table-bordered table-striped">
                     <thead>
                       <tr>
+                        <th>NIK</th>
                         <th>Nama</th>
                         <th>Judul Buku</th>
                         <th>Jumlah</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
+                      <?php foreach ($murid_belumbayar_buku->result() as $mbb): ?>
                       <tr>
-                        <td>Leonardo</td>
-                        <td>English 1</td>
-                        <td>150.000</td>
+                        <td><?= $mbb->nik ?></td>
+                        <td><?= $mbb->nama ?></td>
+                        <td><?= $get_buku->judul ?></td>
+                        <td><?= $get_buku->harga ?></td>
+                        <td><a href="<?php echo base_url().'pembayaranBuku/add?nik='.$mbb->nik.'&idbuku='.$get_buku->id.'&jumlah='.$get_buku->harga.'&periode='.date('m-Y');?>" class="btn btn-success btn-xs"><i class="fa fa-money"></i></a></td>
                       </tr>
-                      <tr>
-                        <td>Ridwan</td>
-                        <td>English 2</td>
-                        <td>150.000</td>
-                      </tr>
-                      <tr>
-                        <td>Evelyn</td>
-                        <td>English 3</td>
-                        <td>150.000</td>
-                      </tr>
+                      <?php endforeach ?>
                     </tbody>
                   </table>
                 </div><!-- /.box-body -->

@@ -68,6 +68,13 @@ class PBuku_model extends CI_Model {
 		
 	}
 
+	public function get_murid_belumbayar_buku($idbuku)
+	{
+		$this->db->from('murid');
+		$this->db->where('!EXISTS(SELECT nik FROM `buku` LEFT JOIN `pembayaran_buku` ON `buku`.`id` = `pembayaran_buku`.id_buku WHERE `pembayaran_buku`.nik = `murid`.nik AND `pembayaran_buku`.id_buku = \''.$idbuku.'\')');
+		return $this->db->get();
+	}
+
 	/**
 	 * create_murid function.
 	 * 
@@ -77,10 +84,11 @@ class PBuku_model extends CI_Model {
 	 * @param mixed $password
 	 * @return bool true on success, false on failure
 	 */
-	public function create_pembayaran_buku($nik, $judul, $jumlah, $periode) {
+	public function create_pembayaran_buku($nik, $idbuku, $judul, $jumlah, $periode) {
 		
 		$data = array(
 			'nik'   => $nik,
+			'id_buku'   => $idbuku,
 			'judul'      => $judul,
 			'jumlah'      => $jumlah,
 			'periode'      => $periode,
@@ -91,10 +99,11 @@ class PBuku_model extends CI_Model {
 		
 	}
 
-	public function update_pembayaran_buku($id, $nik, $judul, $jumlah, $periode) {
+	public function update_pembayaran_buku($id, $nik, $idbuku, $judul, $jumlah, $periode) {
 		
 		$data = array(
 			'nik'   => $nik,
+			'id_buku'   => $idbuku,
 			'judul'      => $judul,
 			'jumlah'      => $jumlah,
 			'periode'      => $periode,

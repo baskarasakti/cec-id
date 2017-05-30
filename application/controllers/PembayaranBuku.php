@@ -80,11 +80,14 @@ class PembayaranBuku extends CI_Controller {
 			}
 		} else {
 			$nik = $this->input->post('nik');
-			$judul = $this->input->post('judul');
+			$temp_buku = $this->input->post('judul');
+			$tempss = explode('-', $temp_buku);
+			$idbuku = $tempss[0];
+			$judul = $tempss[1];
 			$jumlah = $this->input->post('jumlah');
 			$periode = $this->input->post('periode');
 
-			if ($this->pbuku_model->create_pembayaran_buku($nik, $judul, $jumlah, $periode)) {
+			if ($this->pbuku_model->create_pembayaran_buku($nik, $idbuku, $judul, $jumlah, $periode)) {
 				$success = "creation success";
 	    		$buku = $this->buku_model->get_buku_all();
 		        $data = array('success' => $success, 'buku' => $buku );
@@ -153,11 +156,14 @@ class PembayaranBuku extends CI_Controller {
 			}
 		} else {
 			$nik = $this->input->post('nik');
-			$judul = $this->input->post('judul');
+			$temp_buku = $this->input->post('judul');
+			$tempss = explode('-', $temp_buku);
+			$idbuku = $tempss[0];
+			$judul = $tempss[1];
 			$jumlah = $this->input->post('jumlah');
 			$periode = $this->input->post('periode');
 
-			if ($this->pbuku_model->update_pembayaran_buku($id, $nik, $judul, $jumlah, $periode)) {
+			if ($this->pbuku_model->update_pembayaran_buku($id, $nik, $idbuku, $judul, $jumlah, $periode)) {
 				$success = "update success";
 	    		$buku = $this->buku_model->get_buku_all();
 	    		$pbuku = $this->pbuku_model->get_pembayaran_buku($id);

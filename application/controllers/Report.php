@@ -17,6 +17,8 @@ class Report extends CI_Controller {
 		$this->load->model('opcost_model');
 		$this->load->model('pkursus_model');
 		$this->load->model('outlet_model');
+		$this->load->model('pbuku_model');
+		$this->load->model('buku_model');
 
 	}
 
@@ -113,14 +115,21 @@ class Report extends CI_Controller {
 	{
 		$data = new stdClass();
 	    $title = 'Report Belum Bayar Buku';
-		$data = array('title' => $title);
+	    $idbuku = $this->input->get('idbuku');
+	    $buku = $this->buku_model->get_buku_all();
+    	if ($idbuku == "") {
+    		$idbuku = '3';
+    	}
+    	$murid_belumbayar_buku = $this->pbuku_model->get_murid_belumbayar_buku($idbuku);
+    	$get_buku = $this->buku_model->get_buku($idbuku);
+		$data = array('title' => $title, 'murid_belumbayar_buku' => $murid_belumbayar_buku, 'buku' => $buku, 'get_buku' => $get_buku);
 
 		$this->load->library('session');
 		if ($this->session->has_userdata('username')) {
 			$this->load->helper('url');
 			$this->load->view('master/header', $data);
 			$this->load->view('master/navigation');
-			$this->load->view('pages/report/repBuku');
+			$this->load->view('pages/report/repBuku', $data);
 			$this->load->view('master/jsViewTables');
 			$this->load->view('master/footer');
 		} else {

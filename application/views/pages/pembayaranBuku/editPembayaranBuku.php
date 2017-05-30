@@ -42,7 +42,7 @@
                       <select class="form-control" name="judul">
                         <option disabled="disabled">Select Option</option>
                         <?php foreach ($buku->result() as $bukus): ?>
-                        <option value="<?= $bukus->judul; ?>" <?php if ($pembayaran_buku->judul == $bukus->judul ) echo 'selected' ; ?>><?= $bukus->judul; ?></option>
+                        <option value="<?= $bukus->id.'-'.$bukus->judul; ?>" <?php if ($pembayaran_buku->id_buku == $bukus->id ) echo 'selected' ; ?>><?= $bukus->judul; ?></option>
                         <?php endforeach ?>
                       </select>
                     </div>

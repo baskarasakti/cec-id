@@ -35,27 +35,27 @@
                   <div class="box-body">
                     <div class="form-group">
                       <label for="nik">NIK</label>
-                      <input type="text" class="form-control" id="nik" placeholder="Masukkan NIK" name="nik">
+                      <input type="text" class="form-control" id="nik" placeholder="Masukkan NIK" name="nik" <?php if($this->input->get('nik') != null){ echo "value=\"".$this->input->get('nik')."\"";}?>>
                     </div>
                     <div class="form-group">
                       <label for="diskon1">Judul Buku</label>
                       <select class="form-control" name="judul">
                         <option selected disabled="disabled">Select Option</option>
                         <?php foreach ($buku->result() as $bukus): ?>
-                        <option value="<?= $bukus->judul; ?>"><?= $bukus->judul; ?></option>
+                        <option value="<?= $bukus->id.'-'.$bukus->judul; ?>" <?php if($this->input->get('idbuku') == $bukus->id){ echo "selected";}?> ><?= $bukus->judul; ?></option>
                         <?php endforeach ?>
                       </select>
                     </div>
                     <div class="form-group">
                       <label for="jumlah1">Jumlah</label>
-                      <input type="text" class="form-control" id="name" placeholder="Masukkan jumlah" name="jumlah">
+                      <input type="text" class="form-control" id="name" placeholder="Masukkan jumlah" name="jumlah" <?php if($this->input->get('jumlah') != null){ echo "value=\"".$this->input->get('jumlah')."\"";}?>>
                     </div>
                     <div class="form-group">
                       <label for="diskon1">Periode Bulan</label>
                       <select class="form-control" id="periode" name="periode">
                         <?php for ($i=1; $i < 13; $i++) { 
                           ?>
-                          <option value="<?= sprintf('%02d', $i)."-".date('Y'); ?>"><?= sprintf('%02d', $i)."-".date('Y'); ?></option>
+                          <option value="<?= sprintf('%02d', $i)."-".date('Y'); ?>" <?php if($this->input->get('periode') == sprintf('%02d', $i)."-".date('Y')){ echo "selected";}?> ><?= sprintf('%02d', $i)."-".date('Y'); ?></option>
                           <?php
                         } ?>
                       </select>
